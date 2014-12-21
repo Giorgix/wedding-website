@@ -27,7 +27,9 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage
 
         weddingStorage.post(newRsvp)
                       .success(function(data) {
-                        $scope.newRsvp = '';
+                        $scope.firstName = '';
+                        $scope.lastName = '';
+                        $scope.email = '';
                         $scope.rsvps = data;
                       })
                       .error(function(data) {
