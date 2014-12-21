@@ -3,8 +3,16 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var i18n = require('i18n');
 
 var routes = require('./routes/index');
+
+i18n.configure({
+  locales: ['es', 'en'],
+  updateFiles: false,
+  cookie: 'locale',
+  directory: __dirname + '/locales'
+});
 
 var app = express();
 
@@ -15,10 +23,11 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(i18n.init);
 
 app.use('/', routes);
 

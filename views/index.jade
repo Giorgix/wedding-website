@@ -11,8 +11,8 @@ block content
         a.navbar-brand.page-scroll(href='#page-top')
           //i.fa.fa-play-circle
           |   
-          span.light Jamie and Jorge
-          |  Wedding
+          span.light Jamie & Jorge 
+          span= __("wedding")
       // Collect the nav links, forms, and other content for toggling
       .collapse.navbar-collapse.navbar-right.navbar-main-collapse
         ul.nav.navbar-nav
@@ -20,13 +20,13 @@ block content
           li.hidden
             a(href='#page-top')
           li
-            a.page-scroll(href='#about') Wedding info
+            a.page-scroll(href='#about')= __("wedding info")
           li
-            a.page-scroll(href='#rsvp') RSVP
+            a.page-scroll(href='#rsvp')=__("rsvp")
           li
-            a.page-scroll(href='#advices') Advices
+            a.page-scroll(href='#advice')= __("advice")
           li
-            a.page-scroll(href='#contact') Contact
+            a.page-scroll(href='#contact')= __("contact")
 
       // /.navbar-collapse
     // /.container
@@ -39,20 +39,15 @@ block content
               h1.brand-heading.font-hand J
                 small &
                 | J
-              h2 Spanish wedding
-              |                         
-              p.intro-text
-                | We wanna celebrate our wedding in Spain with
-                br
-                | YOU!.
-              |                         
+              h2= __("spanish wedding")
+              p.intro-text= __("intro text")
               a.btn.btn-circle.page-scroll(href='#about')
                 i.fa.fa-angle-double-down.animated
   // About Section
   section#about.container.content-section.text-center
     .row
       .col-lg-8.col-lg-offset-2
-        h2 Wedding info
+        h2= __("wedding info")
         |                 
         p
           | Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on 
@@ -76,25 +71,17 @@ block content
     .download-section
       .container
         .col-lg-8.col-lg-offset-2
-          h2 RSVP
+          h2= __("rsvp")
           |                     
           p You can download Grayscale for free on the preview page at Start Bootstrap.
           |                     
           a.btn.btn-default.btn-lg(href='http://startbootstrap.com/template-overviews/grayscale/') Visit Download Page
-  // Accommodations Section
-  section#accommodations.content-section.text-center
-    .download-section
-      .container
-        .col-lg-8.col-lg-offset-2
-          h2 Acommodations / where to stay
-          |                     
-          p You can sleep here.
   // Advice Section
-  section#advices.content-section.text-center
+  section#advice.content-section.text-center
     .download-section
       .container
         .col-lg-8.col-lg-offset-2
-          h2 Advices for the couple!
+          h2= __("advice title")
           |                     
           p Say whayt you want!
 
@@ -103,7 +90,7 @@ block content
   section#contact.container.content-section.text-center
     .row
       .col-lg-8.col-lg-offset-2
-        h2 Call or email us!
+        h2= __("contact title")
         |                 
         p
           | Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!
