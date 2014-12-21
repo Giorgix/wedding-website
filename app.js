@@ -4,8 +4,20 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var i18n = require('i18n');
+var mongoose = require('mongoose');
+
+var configDB = require('./config/db.js');
+
+// DB ===================================
+mongoose.connect(configDB.url);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback() {
+  console.log('Connected to DB');
+})
 
 var routes = require('./routes/index');
+var apiRoutes = require('./routes/api');
 
 i18n.configure({
   locales: ['es', 'en'],
@@ -30,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(i18n.init);
 
 app.use('/', routes);
+app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
