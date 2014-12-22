@@ -1,5 +1,9 @@
 var weddingAppControllers = angular.module('weddingAppControllers', ['ui.bootstrap']);
 
+weddingAppControllers.controller('collapseCtrl', function($scope) {
+  $scope.isCollapsed = true;
+})
+
 weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage', 
     function($scope, $http, weddingStorage) {
       $scope.rsvps = [];
