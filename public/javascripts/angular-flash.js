@@ -57,9 +57,9 @@
     .directive('flashMessages', [function() {
       var directive = { restrict: 'EA', replace: true };
       directive.template =
-        '<ol id="flash-messages">' +
-          '<li ng-repeat="m in messages" class="{{m.level}}">{{m.text}}</li>' +
-        '</ol>';
+        '<div id="flash-messages">' +
+          '<p ng-repeat="m in messages" class="{{m.level}}">{{m.text}}</li>' +
+        '</div>';
 
       directive.controller = ['$scope', '$rootScope', function($scope, $rootScope) {
         $rootScope.$on('flash:message', function(_, messages, done) {
