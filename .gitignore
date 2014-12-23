@@ -45,3 +45,8 @@ node_modules
 # KDE directory preferences
 .directory
 
+# Created by https://www.gitignore.io
+
+### Bower ###
+bower_components
+

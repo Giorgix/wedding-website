@@ -1,12 +1,13 @@
-var weddingAppControllers = angular.module('weddingAppControllers', ['ui.bootstrap']);
+var weddingAppControllers = angular.module('weddingAppControllers', ['ui.bootstrap', 'flash']);
 
 weddingAppControllers.controller('collapseCtrl', function($scope) {
   $scope.isCollapsed = true;
 })
 
-weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage', 
-    function($scope, $http, weddingStorage) {
+weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage','flash', 
+    function($scope, $http, weddingStorage, flash) {
       $scope.rsvps = [];
+      $scope.message = '';
       weddingStorage.get()
                     .success(function(data) {
                       $scope.rsvps = data;
@@ -35,9 +36,10 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage
                         $scope.lastName = '';
                         $scope.email = '';
                         $scope.rsvps = data;
+                        flash('Confirmation sent!');
                       })
                       .error(function(data) {
-                        $scope.error = 'Error: ' + data;
+                        $scope.message = 'Error: ' + data;
                         console.log('Error: ' + data);
                       });
       }      
