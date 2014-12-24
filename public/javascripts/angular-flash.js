@@ -1,3 +1,6 @@
+// TODO 
+// * REFACTORING OF FLASH AND EMIT FUNCTION and pretty much everything else
+
 (function (root, factory) {
     if (typeof module !== 'undefined' && module.exports) {
         // CommonJS
@@ -31,7 +34,7 @@
       var asMessage = function(level, text) {
         if (!text) {
           text = level;
-          level = 'success';
+          level = 'info';
         }
         return { level: level, text: text };
       };
