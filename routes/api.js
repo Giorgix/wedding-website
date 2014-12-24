@@ -27,8 +27,14 @@ router.route('/rsvps')
     sleepPref: req.body.sleepPref
   }, function(err, data) {
     if(err) {
+      if(err.code === 11000) {
+        res.status(500);
+        res.send('There is an user with that email');
+      } else {
       console.warn(err);
-      res.send(err);
+      res.status(500);
+      res.send(err.message);
+      }
     } else {
       getData(Rsvps, res);
     }

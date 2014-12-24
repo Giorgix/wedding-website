@@ -13,8 +13,8 @@ var rsvp = new Schema ({
   },
   email: {
     type: String,
-    required: true,
-    unique: true
+    unique: true,
+    required: true
   },
   sleepPref: {
     type: String,

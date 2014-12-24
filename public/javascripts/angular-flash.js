@@ -31,7 +31,7 @@
       var asMessage = function(level, text) {
         if (!text) {
           text = level;
-          level = 'alert alert-info';
+          level = 'success';
         }
         return { level: level, text: text };
       };
@@ -58,7 +58,7 @@
       var directive = { restrict: 'EA', replace: true };
       directive.template =
         '<div id="flash-messages">' +
-          '<p ng-repeat="m in messages" class="{{m.level}}">{{m.text}}</li>' +
+          '<p ng-repeat="m in messages" class="alert alert-{{m.level}}">{{m.text}}</li>' +
         '</div>';
 
       directive.controller = ['$scope', '$rootScope', function($scope, $rootScope) {

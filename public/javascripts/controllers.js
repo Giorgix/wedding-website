@@ -23,7 +23,7 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage
         var newRsvp = {
           firstName: $scope.firstName.trim(),
           lastName: $scope.lastName.trim(),
-          email: $scope.email,
+          email: $scope.email.trim(),
           sleepPref: $scope.sleepPrefChoice
         };
         if(!newRsvp.firstName || !newRsvp.lastName) {
@@ -36,10 +36,10 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage
                         $scope.lastName = '';
                         $scope.email = '';
                         $scope.rsvps = data;
-                        flash('Confirmation sent!');
+                        flash('success', 'Confirmation sent!');
                       })
                       .error(function(data) {
-                        $scope.message = 'Error: ' + data;
+                        flash('danger', 'Error: ' + data);
                         console.log('Error: ' + data);
                       });
       }      
