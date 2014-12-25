@@ -41,5 +41,26 @@ router.route('/rsvps')
   });
 });
 
+router.delete('/rsvps/:id', function(req, res) {
+  Rsvps.findById(req.params.id, function (err, data){
+    if(!data) {
+      res.status(500);
+      res.send('No item with that id');
+    } else if(err){
+      res.status(500);
+      res.send(err);
+    } else {
+      data.remove(function(err) {
+        if(err) {
+          res.send(err);
+        } else {
+          // res.status(removed)
+          res.send('Removed');
+        }
+      });
+    }
+  })
+})
+
 
 module.exports = router;
