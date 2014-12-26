@@ -2,6 +2,8 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var passport = require('passport');
 var bodyParser = require('body-parser');
 var i18n = require('i18n');
 var mongoose = require('mongoose');
@@ -18,6 +20,7 @@ db.once('open', function callback() {
 
 var routes = require('./routes/index');
 var apiRoutes = require('./routes/api');
+var adminRoutes = require('./routes/admin');
 
 i18n.configure({
   locales: ['es', 'en'],
@@ -27,6 +30,8 @@ i18n.configure({
 });
 
 var app = express();
+
+require('./config/passport')(passport);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,7 +46,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(i18n.init);
 
+app.use(session({
+  secret: 'ASDASDASLDKJ2309823450972$%^$%asdasd',
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', routes);
+app.use('/admin', adminRoutes);
 app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler

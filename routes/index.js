@@ -6,7 +6,7 @@ router.get('/', function(req, res) {
   res.render('index');
 });
 
-router.get('/:locale', function(req, res, next) {
+router.get('/lang/:locale', function(req, res, next) {
   res.cookie('locale', req.params.locale);
   res.render('index');
 })
