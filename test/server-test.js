@@ -81,4 +81,14 @@ describe("API request", function() {
         done();
       });
   });
+  it('GET: should return elements in JSON', function(done) {
+    api.get('/rsvps')
+       .expect(200)
+       .expect('Content-Type', /json/)
+       .end(function(err, res) {
+         if(err) return done(err);
+         res.body.length.should.equal(1);
+         done();
+       });
+  });
 })
