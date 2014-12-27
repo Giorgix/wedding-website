@@ -74,18 +74,20 @@ block content
           h2= __("rsvp")
           flash:messages
           form(ng-submit="addRsvp()")
-            div.form-group.col-md-12
-              div.col-xs-12.col-md-6
-                input.form-control(type="text" placeholder="First name" ng-model="firstName")
-              div.col-xs-12.col-md-6
-                input.form-control(type="text" placeholder="Last name" ng-model="lastName")
-            div.form-group.col-md-6.col-md-offset-3
-              input.form-control(type="text" placeholder="Email" ng-model="email")
-            div.form-group.col-md-12
+            div.form-group.col-xs-12.col-sm-12
+              div.col-xs-12.col-sm-12
+                input.form-control.input-lg(type="text" placeholder="First name" ng-model="firstName")
+            div.form-group.col-xs-12.col-sm-12
+              div.col-xs-12.col-sm-12
+                input.form-control.input-lg(type="text" placeholder="Last name" ng-model="lastName")
+            div.form-group.col-xs-12.col-sm-12
+              div.col-xs-12.col-sm-12
+                input.form-control.input-lg(type="text" placeholder="Email" ng-model="email")
+            div.form-group.col-xs-12.col-sm-12
                 label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega'") Brihuega
                 label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid'") Madrid
                 label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'No car'") No car
-            div.form-group.col-md-12
+            div.form-group.col-xs-12.col-sm-12
               div.col-sm-6.col-sm-offset-3
                 button.btn.btn-success.btn-lg.btn-block(type="submit") Confirm
 
