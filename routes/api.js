@@ -14,6 +14,15 @@ function getData(model, res) {
   });
 };
 
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) {
+      return next();
+    }
+    res.status(401);
+    res.send('You need to login');
+  }
+
+
 router.route('/rsvps')
 .get(function(req, res) {
   getData(Rsvps, res);
@@ -41,7 +50,7 @@ router.route('/rsvps')
   });
 });
 
-router.delete('/rsvps/:id', function(req, res) {
+router.delete('/rsvps/:id', isLoggedIn, function(req, res) {
   Rsvps.findById(req.params.id, function (err, data){
     if(!data) {
       res.status(500);
@@ -52,6 +61,7 @@ router.delete('/rsvps/:id', function(req, res) {
     } else {
       data.remove(function(err) {
         if(err) {
+          res.status(500);
           res.send(err);
         } else {
           // res.status(removed)

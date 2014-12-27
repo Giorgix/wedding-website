@@ -32,7 +32,7 @@ var passport = require('passport');
   });
 
   router.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/admin/dashboard',
+    successRedirect: '/admin',
     failureRedirect: '/admin/signup',
 
     failureFlash: true
