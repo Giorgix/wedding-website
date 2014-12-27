@@ -5,18 +5,18 @@ var passport = require('passport');
   
   // GET ADMIN HOME ===================================
   router.get('/', isLoggedIn, function(req, res) {
-    res.render('profile', {user: req.user});
+    res.render('dashboard');
   });
   // LOGIN ======================================
   router.get('/login', function(req, res) {
     if(req.isAuthenticated()) {
-      res.redirect('/admin/profile');
+      res.redirect('/admin');
     } else {
       res.render('login', {message: req.flash('loginMessage') });
     }
   });
   router.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/admin/profile',
+    successRedirect: '/admin',
     failureRedirect: '/admin/login',
 
     failureFlash: true
@@ -25,22 +25,18 @@ var passport = require('passport');
   // SIGNUP =======================================
   router.get('/signup', function(req, res) {
     if(req.isAuthenticated()) {
-      res.redirect('/admin/profile');
+      res.redirect('/admin');
     } else {
       res.render('signup', {message: req.flash('signupMessage') });
     }
   });
 
   router.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/admin/profile',
+    successRedirect: '/admin/dashboard',
     failureRedirect: '/admin/signup',
 
     failureFlash: true
   }));
-  // PROFILE =======================================
-  router.get('/profile', isLoggedIn, function(req, res) {
-    res.render('profile', {user : req.user})
-  })
   // LOGOUT ========================
   router.get('/logout', function(req, res) {
     req.logout();
