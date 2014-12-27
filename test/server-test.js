@@ -32,4 +32,53 @@ describe("Basic dummy model db operations", function() {
       done();
     });
   });
+  it("can clear DB on demand", function(done) {
+    Dummy.count(function(err, count) {
+      if(err) return done(err);
+      count.should.equal(1);
+    })
+
+    clearDB(function(err) {
+      if(err) return done(err);
+
+      Dummy.find({}, function(err, docs) {
+        if (err) return done(err);
+
+        docs.length.should.equal(0);
+        done();
+      });
+    });
+  });
+});
+
+describe("API request", function() {
+  var itemId;
+  beforeEach(function(done) {
+    clearDB(done);
+  });
+  
+  beforeEach(function(done) {
+    Dummy.create({firstName: 'Pepe'
+                , lastName: 'Perez'
+                , email: 'email@email.com'
+                , sleepPref: 'Madrid'
+                },function(err, dummy) {
+                  itemId = dummy._id;
+                  done();
+                });
+  });
+
+  it('POST: should create a new element', function(done) {
+    api.post('/rsvps')
+      .send({firstName: 'Paco'
+           , lastName: 'Martinez'
+           , email: 'email2@email2.com'
+           , sleepPref: 'Brihuega'})
+      .expect(200)
+      .end(function(err, res) {
+        if(err) return done(err);
+        res.body.length.should.equal(2);
+        done();
+      });
+  });
 })

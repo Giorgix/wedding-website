@@ -9,9 +9,16 @@ var i18n = require('i18n');
 var mongoose = require('mongoose');
 
 var configDB = require('./config/db.js');
+var dbURL;
+var env = process.env.NODE_ENV || 'development';
+if(env == 'development') {
+  dbURL = configDB.urlTest;
+} else if(env == 'production') {
+  dbURL = configDB.url;
+}
 
 // DB ===================================
-mongoose.connect(configDB.url);
+mongoose.connect(dbURL);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
