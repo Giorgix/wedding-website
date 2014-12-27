@@ -12,7 +12,7 @@ var passport = require('passport');
     if(req.isAuthenticated()) {
       res.redirect('/admin/profile');
     } else {
-      res.render('login');
+      res.render('login', {message: req.flash('loginMessage') });
     }
   });
   router.post('/login', passport.authenticate('local-login', {
@@ -27,7 +27,7 @@ var passport = require('passport');
     if(req.isAuthenticated()) {
       res.redirect('/admin/profile');
     } else {
-      res.render('signup');
+      res.render('signup', {message: req.flash('signupMessage') });
     }
   });
 
