@@ -7,6 +7,7 @@ var passport = require('passport');
 var bodyParser = require('body-parser');
 var i18n = require('i18n');
 var mongoose = require('mongoose');
+var flash = require('connect-flash');
 
 var configDB = require('./config/db.js');
 var dbURL;
@@ -61,6 +62,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 app.use('/', routes);
 app.use('/admin', adminRoutes);

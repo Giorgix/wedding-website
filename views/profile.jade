@@ -4,21 +4,20 @@ block content
   div.container
     div.page-header.text-center
       h1
-        span.fa.fa-anchor
-        | Profile Page
+        span.fa.fa-pie-chart
+        | Admin Page
       a.btn.btn-default.btn-sm(href="/admin/logout") Logout
     div.row
-      div.col-sm-6
-        div.well
-          h3
-            span.fa.fa-user
-            | Local
-          p
-            strong id: 
-            | #{user._id}
-          p
-            strong email: 
-            | #{user.local.email}
-          p
-            strong password: 
-            | #{user.local.password}
+      div.col-sm-12
+        div.well(ng-controller="rsvpCtrl")
+          table.table.table-striped
+            tr.text-muted
+              th First Name
+              th Last Name
+              th Email
+              th Sleep Pref
+            tr.text-muted(ng-repeat="rsvp in rsvps")
+              td {{rsvp.firstName}}
+              td {{rsvp.lastName}}
+              td {{rsvp.email}}
+              td {{rsvp.sleepPref}}
