@@ -91,4 +91,13 @@ describe("API request", function() {
          done();
        });
   });
+  it('DELETE: should delete the given item', function(done) {
+    api.delete('/rsvps/' + itemId)
+       .expect(200)
+       .end(function(err, res) {
+         if(err) return done(err);
+         res.body.length.should.equal(0);
+         done();
+       });
+  });
 })

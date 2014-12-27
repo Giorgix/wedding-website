@@ -55,7 +55,7 @@ router.delete('/rsvps/:id', function(req, res) {
           res.send(err);
         } else {
           // res.status(removed)
-          res.send('Removed');
+          getData(Rsvps, res);
         }
       });
     }
