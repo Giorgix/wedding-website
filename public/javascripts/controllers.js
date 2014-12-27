@@ -44,5 +44,16 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage
                         console.log('Error: ' + data);
                       });
       }      
+
+      $scope.removeRsvp = function(itemId) {
+        weddingStorage.delete(itemId)
+                      .success(function(data) {
+                        $scope.rsvps = data;
+                      })
+                      .error(function(data) {
+                        flash('danger', 'Error: ' + data);
+                        console.log('Error: ' + data);
+                      });        
+      }
     
     }])

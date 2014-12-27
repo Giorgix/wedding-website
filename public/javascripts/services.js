@@ -9,8 +9,8 @@ angular.module('weddingAppServices', []).factory('weddingStorage', ['$http',
         return $http.post('/api/rsvps', rsvp);
       }
 
-      service.delete = function(id) {
-        return $http.delete('/api/rvsps/' + id)
+      service.delete = function(itemId) {
+        return $http.delete('/api/rsvps/' + itemId);
       }
       
       return service;
