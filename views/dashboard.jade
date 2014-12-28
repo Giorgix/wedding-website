@@ -15,19 +15,20 @@ block content
               div.input-group-addon Filter
               input.form-control(ng-model="query")
           h4.text-muted TOTAL: {{filtered.length}}
-          table.table.table-striped
-            tr.text-muted
-              th
-                a(href="" ng-click="sortField = 'firstName' ; reverse = !reverse") First Name
-              th 
-                a(href="" ng-click="sortField = 'lastName' ; reverse = !reverse") Last Name
-              th Email
-              th
-                a(href="" ng-click="sortField = 'sleepPref' ; reverse = !reverse") Sleep Pref
-            tr.text-muted(ng-repeat="rsvp in filtered = (rsvps | filter:query | orderBy:sortField:reverse) track by $index")
-              td {{rsvp.firstName}}
-              td {{rsvp.lastName}}
-              td {{rsvp.email}}
-              td {{rsvp.sleepPref}}
-              td
-                button.btn.btn-danger(ng-click="removeRsvp(rsvp._id)") Delete
+          div.table-responsive
+            table.table.table-striped
+              tr.text-muted
+                th
+                  a(href="" ng-click="sortField = 'firstName' ; reverse = !reverse") First Name
+                th 
+                  a(href="" ng-click="sortField = 'lastName' ; reverse = !reverse") Last Name
+                th Email
+                th
+                  a(href="" ng-click="sortField = 'sleepPref' ; reverse = !reverse") Sleep Pref
+              tr.text-muted(ng-repeat="rsvp in filtered = (rsvps | filter:query | orderBy:sortField:reverse) track by $index")
+                td {{rsvp.firstName}}
+                td {{rsvp.lastName}}
+                td {{rsvp.email}}
+                td {{rsvp.sleepPref}}
+                td
+                  button.btn.btn-danger(ng-click="removeRsvp(rsvp._id)") Delete
