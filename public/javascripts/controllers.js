@@ -8,6 +8,8 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage
     function($scope, $http, weddingStorage, flash) {
       $scope.rsvps = [];
       $scope.message = '';
+      $scope.sortField = 'lastName';
+      $scope.reverse = true;
       weddingStorage.get()
                     .success(function(data) {
                       $scope.rsvps = data;
