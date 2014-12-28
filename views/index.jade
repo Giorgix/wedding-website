@@ -48,23 +48,15 @@ block content
     .row
       .col-lg-8.col-lg-offset-2
         h2= __("wedding info")
-        |                 
-        p
-          | Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on 
-          a(href='http://startbootstrap.com/template-overviews/grayscale/') the preview page
-          | . The theme is open source, and you can use it for any purpose, personal or commercial.
-        |                 
-        p
-          | This theme features stock photos by 
-          a(href='http://gratisography.com/') Gratisography
-          |  along with a custom Google Maps skin courtesy of 
-          a(href='http://snazzymaps.com/') Snazzy Maps
-          | .
-        |                 
-        p
-          | Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.
-  // Map Section
-  #map
+        h3!= __("wedding date")
+        h4= __("wedding hour")
+        address
+          h5= __("wedding place")
+          div= __("wedding address")
+          div= __("wedding address 2")
+        p= __("wedding description")
+    // Map Section
+    #map
 
   // Download Section
   section#rsvp.content-section.text-center(ng-controller="rsvpCtrl")
