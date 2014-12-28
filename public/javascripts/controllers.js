@@ -9,7 +9,7 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage
       $scope.rsvps = [];
       $scope.message = '';
       $scope.sortField = 'lastName';
-      $scope.reverse = true;
+      $scope.reverse = false;
       weddingStorage.get()
                     .success(function(data) {
                       $scope.rsvps = data;
