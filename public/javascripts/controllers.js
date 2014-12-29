@@ -30,6 +30,7 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage
           firstName: $scope.firstName.trim(),
           lastName: $scope.lastName.trim(),
           email: $scope.email.trim(),
+          assist: $scope.assistChoice,
           sleepPref: $scope.sleepPrefChoice
         };
         
@@ -38,6 +39,7 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage
                         $scope.firstName = '';
                         $scope.lastName = '';
                         $scope.email = '';
+                        $scope.sleepPrefChoice = '';
                         $scope.rsvps = data;
                         flash('success', 'Confirmation sent!');
                       })

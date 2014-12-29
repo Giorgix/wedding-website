@@ -33,6 +33,7 @@ router.route('/rsvps')
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
+    assist: req.body.assist,
     sleepPref: req.body.sleepPref
   }, function(err, data) {
     if(err) {

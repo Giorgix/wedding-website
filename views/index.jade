@@ -55,8 +55,8 @@ block content
           div= __("wedding address")
           div= __("wedding address 2")
         p= __("wedding description")
-    // Map Section
-    #map
+  // Map Section
+  #map
 
   // Download Section
   section#rsvp.content-section.text-center(ng-controller="rsvpCtrl")
@@ -68,20 +68,25 @@ block content
           form(ng-submit="addRsvp()")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
-                input.form-control.input-lg(type="text" placeholder="First name" ng-model="firstName")
+                input.form-control.input-lg(type="text" placeholder=__("first name") ng-model="firstName")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
-                input.form-control.input-lg(type="text" placeholder="Last name" ng-model="lastName")
+                input.form-control.input-lg(type="text" placeholder=__("last name") ng-model="lastName")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
-                input.form-control.input-lg(type="text" placeholder="Email" ng-model="email")
+                input.form-control.input-lg(type="text" placeholder=__("email") ng-model="email")
             div.form-group.col-xs-12.col-sm-12
-                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega'") Brihuega
-                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid'") Madrid
-                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'No car'") No car
+              h5= __("rsvp assist")
+              label.btn.btn-success.btn-lg(ng-model="assistChoice" ng-click="assist = true" btn-radio="true") yes
+              label.btn.btn-danger.btn-lg(ng-model="assistChoice" ng-click="assist = false" btn-radio="false") no
+            div.form-group.col-xs-12.col-sm-12(ng-show="assist")
+                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega Car'") Brihuega Car
+                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega no car'") Brihuega no car
+                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid Car'") Madrid Car
+                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid no car'") Madrid no car
             div.form-group.col-xs-12.col-sm-12
               div.col-sm-6.col-sm-offset-3
-                button.btn.btn-success.btn-lg.btn-block(type="submit") Confirm
+                button.btn.btn-success.btn-lg.btn-block(type="submit")= __("confirm")
 
   // Advice Section
   section#advice.content-section.text-center

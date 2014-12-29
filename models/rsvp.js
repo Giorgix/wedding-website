@@ -16,9 +16,12 @@ var rsvp = new Schema ({
     unique: true,
     required: true
   },
+  assist: {
+    type: Boolean,
+    require: true
+  },
   sleepPref: {
-    type: String,
-    required: true
+    type: String
   }
 });
 
