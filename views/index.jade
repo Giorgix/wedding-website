@@ -80,6 +80,7 @@ block content
               label.btn.btn-success.btn-lg(ng-model="assistChoice" ng-click="assist = true" btn-radio="true") yes
               label.btn.btn-danger.btn-lg(ng-model="assistChoice" ng-click="assist = false" btn-radio="false") no
             div.form-group.col-xs-12.col-sm-12(ng-show="assist")
+                h5= __("rsvp sleep")
                 label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega Car'") Brihuega Car
                 label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega no car'") Brihuega no car
                 label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid Car'") Madrid Car
