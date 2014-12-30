@@ -4,13 +4,13 @@ weddingAppControllers.controller('collapseCtrl', function($scope) {
   $scope.isCollapsed = true;
 })
 
-weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage','flash', 
-    function($scope, $http, weddingStorage, flash) {
+weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','flash', 
+    function($scope, $http, rsvpStorage, flash) {
       $scope.rsvps = [];
       $scope.message = '';
       $scope.sortField = 'lastName';
       $scope.reverse = false;
-      weddingStorage.get()
+      rsvpStorage.get()
                     .success(function(data) {
                       $scope.rsvps = data;
                     
@@ -34,7 +34,7 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage
           sleepPref: $scope.sleepPrefChoice
         };
         
-        weddingStorage.post(newRsvp)
+        rsvpStorage.post(newRsvp)
                       .success(function(data) {
                         $scope.firstName = '';
                         $scope.lastName = '';
@@ -50,7 +50,7 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'weddingStorage
       }      
 
       $scope.removeRsvp = function(itemId) {
-        weddingStorage.delete(itemId)
+        rsvpStorage.delete(itemId)
                       .success(function(data) {
                         $scope.rsvps = data;
                       })
