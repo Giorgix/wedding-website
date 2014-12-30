@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var Shcema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var advice = new Schema ({
   name: {

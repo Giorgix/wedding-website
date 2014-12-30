@@ -3,6 +3,7 @@ var router = express.Router();
 
 // MODELS ===================================
 var rsvps = require('.././models/rsvp.js').RsvpModel;
+var advice = require('.././models/advice.js').AdviceModel;
 
 function getData(model, res) {
   model.find(function(err, data) {
@@ -62,7 +63,7 @@ function isLoggedIn(req, res, next) {
     res.send('You need to login');
   }
 
-
+// RSVPS ==================================
 router.get('/rsvps', function(req, res) {
   getData(rsvps, res);
 })
@@ -73,6 +74,21 @@ router.post('/rsvps', function(req, res) {
 
 router.delete('/rsvps/:id', isLoggedIn, function(req, res) {
   removeItem(rsvps, req.params.id, res);
+})
+
+
+
+// ADVICE ==================================
+router.get('/advice', function(req, res) {
+  getData(advice, res);
+})
+
+router.post('/advice', function(req, res) {
+  createItem(advice, req.body, res);
+  });
+
+router.delete('/advice/:id', isLoggedIn, function(req, res) {
+  removeItem(advice, req.params.id, res);
 })
 
 

@@ -61,3 +61,54 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
       }
     
     }])
+
+weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorage','flash', 
+    function($scope, $http, adviceStorage, flash) {
+      $scope.adviceList = [];
+      $scope.message = '';
+      adviceStorage.get()
+                    .success(function(data) {
+                      $scope.adviceList = data;
+                    
+                    })
+                    .error(function(data) {
+                      $scope.error = 'Error: ' + data;
+                      console.log('Error: ' + data);
+                    });
+
+
+      $scope.addAdvice = function() {
+        if(!$scope.name || !$scope.content) {
+          flash('danger', 'Error: Please fill the fields');
+          return;
+        }
+        var newAdvice = {
+          name: $scope.name.trim(),
+          content: $scope.content.trim()
+        };
+        
+        adviceStorage.post(newAdvice)
+                      .success(function(data) {
+                        $scope.name = '';
+                        $scope.content = '';
+                        $scope.adviceList = data;
+                        flash('success', 'Advice sent!');
+                      })
+                      .error(function(data) {
+                        flash('danger', 'Error: ' + data);
+                        console.log('Error: ' + data);
+                      });
+      }      
+
+      $scope.removeAdvice = function(itemId) {
+        adviceStorage.delete(itemId)
+                      .success(function(data) {
+                        $scope.adviceList = data;
+                      })
+                      .error(function(data) {
+                        flash('danger', 'Error: ' + data);
+                        console.log('Error: ' + data);
+                      });        
+      }
+    
+    }])

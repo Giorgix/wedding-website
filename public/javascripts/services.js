@@ -16,3 +16,20 @@ weddingAppServices.factory('rsvpStorage', ['$http', function($http) {
   
   return service;
 }]);
+
+weddingAppServices.factory('adviceStorage', ['$http', function($http) {
+  var service = {};
+  service.get = function() {
+    return $http.get('/api/advice');
+  }
+  
+  service.post = function(advice) {
+    return $http.post('/api/advice', advice);
+  }
+
+  service.delete = function(itemId) {
+    return $http.delete('/api/advice/' + itemId);
+  }
+  
+  return service;
+}]);
