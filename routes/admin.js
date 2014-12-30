@@ -5,7 +5,7 @@ var passport = require('passport');
   
   // GET ADMIN HOME ===================================
   router.get('/', isLoggedIn, function(req, res) {
-    res.render('dashboard');
+    res.render('admin/dashboard');
   });
   // LOGIN ======================================
   router.get('/login', function(req, res) {
