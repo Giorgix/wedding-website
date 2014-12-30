@@ -1,0 +1,15 @@
+<div class="well">
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon"> Filter</div>
+      <input class="form-control" ng-model="query">
+    </div>
+  </div>
+  <h3> advice</h3>
+  <div ng-repeat="advice in adviceList | filter:query">
+    <h5 class="text-muted">{{advice.name}}
+      <span><button class="btn btn-danger" ng-click="removeAdvice(advice._id)"> Delete</button></span>
+    </h5>
+    <p class="text-muted">{{advice.content}}</p>
+  </div>
+</div>
