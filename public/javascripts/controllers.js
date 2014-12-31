@@ -66,6 +66,7 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorag
     function($scope, $http, adviceStorage, flash) {
       $scope.adviceList = [];
       $scope.message = '';
+      $scope.orderField = 'created.ISODate';
       adviceStorage.get()
                     .success(function(data) {
                       $scope.adviceList = data;
