@@ -6,7 +6,7 @@
     </div>
   </div>
   <h3> advice</h3>
-  <div ng-repeat="advice in adviceList | filter:query">
+  <div ng-repeat="advice in adviceList | filter:query | orderBy: '-created'">
     <h5 class="text-primary advice-name">{{advice.name}}
       <span><button class="btn btn-danger" ng-click="removeAdvice(advice._id)"> Delete</button></span>
     </h5>
