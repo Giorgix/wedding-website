@@ -64,6 +64,7 @@ block content
       .container
         .col-lg-8.col-lg-offset-2
           h2= __("rsvp")
+          h4!= __("rsvp request")
           flash:messages
           form(ng-submit="addRsvp()")
             div.form-group.col-xs-12.col-sm-12
@@ -80,11 +81,14 @@ block content
               label.btn.btn-success.btn-lg(ng-model="assistChoice" ng-click="assist = true" btn-radio="true") yes
               label.btn.btn-danger.btn-lg(ng-model="assistChoice" ng-click="assist = false" btn-radio="false") no
             div.form-group.col-xs-12.col-sm-12(ng-show="assist")
+                h4= __("accommodations")                
+                p= __("accommodations deal")
+                p= __("accommodations text")
                 h5= __("rsvp sleep")
-                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega Car'") Brihuega Car
-                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega no car'") Brihuega no car
-                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid Car'") Madrid Car
-                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid no car'") Madrid no car
+                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega Car'")= __("rsvp option 1")
+                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega no car'")= __("rsvp option 2")
+                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid Car'")= __("rsvp option 3")
+                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid no car'")= __("rsvp option 4")
             div.form-group.col-xs-12.col-sm-12
               div.col-sm-6.col-sm-offset-3
                 button.btn.btn-success.btn-lg.btn-block(type="submit")= __("confirm")
@@ -94,6 +98,7 @@ block content
     .container
       .col-lg-8.col-lg-offset-2
         h2= __("advice title")
+        h4= __("advice intro")
         div(ng-repeat="advice in adviceList | orderBy: '-created' | limitTo:3")
           h5.text-success.advice-name {{advice.name}} 
             small at {{advice.created | date:'dd-MM-yyyy HH:mm:ss'}}
@@ -119,10 +124,7 @@ block content
     .row
       .col-lg-8.col-lg-offset-2
         h2= __("contact title")
-        |                 
-        p
-          | Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!
-        |                 
+        h4= __("contact text")
         p
           a(href='mailto:wedding@jamieandjorge.com') wedding@jamieandjorge.com
         |                 
