@@ -12,8 +12,8 @@ body {
     width: 100%;
     height: 100%;
     font-family: 'Slabo 27px',"Helvetica Neue",Helvetica,Arial,sans-serif;
-    color: #fff;
-    background-color: #000;
+    color: #000;
+    background-color: #FFF;
 }
 
 html {
@@ -83,7 +83,7 @@ a:focus {
     border-bottom: 1px solid rgba(255,255,255,.3);
     text-transform: uppercase;
     font-family: 'Lato',"Helvetica Neue",Helvetica,Arial,sans-serif;
-    background-color: #000;
+    background-color: #FFF;
 }
 
 .navbar-custom .navbar-brand {
@@ -97,7 +97,7 @@ a:focus {
 .navbar-custom .navbar-brand .navbar-toggle {
     padding: 4px 6px;
     font-size: 16px;
-    color: #fff;
+    color: #333;
 }
 
 .navbar-custom .navbar-brand .navbar-toggle:focus,
@@ -137,10 +137,13 @@ a:focus {
         -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
         transition: background .5s ease-in-out,padding .5s ease-in-out;
     }
+    .top-nav-collapse a {
+      color: #333333;
+    }
 
     .top-nav-collapse {
         padding: 0;
-        background-color: #000;
+        background-color: #fff;
     }
 
     .navbar-custom.top-nav-collapse {
@@ -340,6 +343,9 @@ ul.banner-social-buttons {
         display: block;
         margin-bottom: 20px;
         padding: 0;
+    }
+    .navbar-custom a {
+      color: #333;
     }
 
     ul.banner-social-buttons li:last-child {
