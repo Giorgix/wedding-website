@@ -28,10 +28,17 @@ h4,
 h5,
 h6 {
     margin: 0 0 35px;
-    text-transform: uppercase;
-    font-family: 'Lato',"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
     letter-spacing: 1px;
+    
+}
+h3:first-letter {
+  text-transform: uppercase;
+}
+h2 {
+    font-family: 'Fredericka the Great', cursive;
+    text-transform: uppercase;
+    font-weight: 400;
+  
 }
 .advice-name {
   color: #454545;
@@ -320,17 +327,17 @@ a:focus {
 }
 
 .btn-default {
-    border: 1px solid #219ab3;
-    color: #219ab3;
+    border: 1px solid #233332;
+    color: #233332;
     background-color: transparent;
 }
 
 .btn-default:hover,
 .btn-default:focus {
-    border: 1px solid #219ab3;
+    border: 1px solid #233332;
     outline: 0;
-    color: #000;
-    background-color: #219ab3;
+    color: #FFF;
+    background-color: #233332;
 }
 
 ul.banner-social-buttons {
@@ -407,4 +414,34 @@ body {
 }
 .container-full {
   width: 100%;
+}
+
+@font-face {
+  font-family: 'icons';
+  src: url('/fonts/icons.eot'); /* IE9 Compat Modes */
+  src: url('/fonts/icons.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       /*url('/fonts/icons.woff2') format('woff2'),  Super Modern Browsers */
+       url('/fonts/icons.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/fonts/icons.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/icons.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+[data-icon]:before {
+  font-family: icons; /* BYO icon font, mapped smartly */
+  content: attr(data-icon);
+  line-height: 24px;
+  speak: none; /* Not to be trusted, but hey. */
+}
+
+.section-icon {
+  font-size: 10em;
+}
+.date-icon {
+  color: #2F2738;
+}
+.rsvp-icon {
+  color: #2A4948;
+}
+.advice-image {
+  margin-bottom: 35px;
 }
