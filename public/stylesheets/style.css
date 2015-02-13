@@ -269,7 +269,7 @@ a:focus {
 }
 
 .content-section {
-    padding-top: 100px;
+    padding: 100px 0;
 }
 
 .download-section {
@@ -287,12 +287,12 @@ a:focus {
 #map {
     width: 100%;
     height: 200px;
-    margin-top: 100px;
+    /*margin-top: 100px;*/
 }
 
 @media(min-width:767px) {
     .content-section {
-        padding-top: 250px;
+        padding-top: 100px 0;
     }
 
     .download-section {
@@ -301,7 +301,7 @@ a:focus {
 
     #map {
         height: 400px;
-        margin-top: 250px;
+        /*margin-top: 250px;*/
     }
 }
 
@@ -383,4 +383,19 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: rgba(255,255,255,.2);
+}
+#about {
+  background-color: #83C5D1;
+  color: #FFF;
+}
+#rsvp {
+  background-color: #798287;
+  color: #fff;
+}
+#advice {
+  background-color: #C7DAD4;
+  color: #fff; 
+}
+.container-full {
+  width: 100%;
 }
