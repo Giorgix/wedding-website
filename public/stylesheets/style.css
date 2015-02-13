@@ -34,10 +34,7 @@ h6 {
     letter-spacing: 1px;
 }
 .advice-name {
-  margin-bottom: 1em;
-}
-.advice-content {
-  margin-bottom: 1.5em;
+  color: #454545;
 }
 .font-hand {
     font-family: 'Great Vibes',"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -61,6 +58,14 @@ p {
     }
 }
 
+.advice-content {
+  color: #333333;
+  margin: 0;
+}
+
+.advice-form {
+  margin-top: 100px;
+}
 a {
     color: #219ab3;
     -webkit-transition: all .2s ease-in-out;
@@ -385,7 +390,7 @@ body {
     webkit-tap-highlight-color: rgba(255,255,255,.2);
 }
 #about {
-  background-color: #7B6B89;
+  background-color: #705F7F;
   color: #FFF;
 }
 #rsvp {
