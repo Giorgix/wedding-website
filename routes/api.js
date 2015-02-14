@@ -4,6 +4,7 @@ var router = express.Router();
 // MODELS ===================================
 var rsvps = require('.././models/rsvp.js').RsvpModel;
 var advice = require('.././models/advice.js').AdviceModel;
+var song = require('.././models/song.js').SongModel;
 
 function getData(model, res) {
   model.find(function(err, data) {
@@ -91,5 +92,18 @@ router.delete('/advice/:id', isLoggedIn, function(req, res) {
   removeItem(advice, req.params.id, res);
 })
 
+
+// SONG ======================================
+router.get('/songs', function(req, res) {
+  getData(song, res);
+})
+
+router.post('/songs', function(req, res) {
+  createItem(song, req.body, res);
+  });
+
+router.delete('/song/:id', isLoggedIn, function(req, res) {
+  removeItem(song, req.params.id, res);
+})
 
 module.exports = router;

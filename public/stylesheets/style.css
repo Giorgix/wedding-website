@@ -401,7 +401,7 @@ body {
   color: #FFF;
 }
 #accommodations {
-  background-color: #2F3851;
+  background-color: #495575;
   color: #fff;
 }
 #rsvp {
@@ -443,15 +443,22 @@ body {
 .section-icon {
   font-size: 10em;
 }
-.date-icon {
+.subtitle {
+  text-transform: uppercase;
+}
+.date-icon, address, #about .subtitle {
   color: #2F2738;
 }
 .accommodations-icon {
-  color: #161A26;
+  color: #283044;
 }
 .rsvp-icon {
   color: #2A4948;
 }
 .advice-image {
+  margin-bottom: 35px;
+}
+
+.btn-link {
   margin-bottom: 35px;
 }

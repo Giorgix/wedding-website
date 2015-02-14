@@ -33,3 +33,20 @@ weddingAppServices.factory('adviceStorage', ['$http', function($http) {
   
   return service;
 }]);
+
+weddingAppServices.factory('musicStorage', ['$http', function($http) {
+  var service = {};
+  service.get = function() {
+    return $http.get('/api/songs');
+  }
+  
+  service.post = function(song) {
+    return $http.post('/api/songs', song);
+  }
+
+  service.delete = function(itemId) {
+    return $http.delete('/api/song/' + itemId);
+  }
+  
+  return service;
+}]);

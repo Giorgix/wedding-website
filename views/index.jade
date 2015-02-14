@@ -52,12 +52,18 @@ block content
       .col-lg-8.col-lg-offset-2
         h2= __("wedding info")
         span.section-icon.date-icon(aria-hidden="true" data-icon!="&#xe600;")
-        h4= __("wedding hour")
+        h3= __("wedding hour")
         address
-          h5= __("wedding place")
+          div.btn-link
+            a(href="http://www.lapenabermeja.com")
+              div.btn.btn-default.btn-lg!= __("wedding place")
           div= __("wedding address")
           div= __("wedding address 2")
-        p= __("wedding description")
+        p= __("wedding description 1")
+        p= __("wedding description 2")
+        hr
+        h3.subtitle= __("dress code")
+        p= __("wedding dress code")
   // Map Section
   #map
   section#accommodations.container-fluid.content-section.text-center
@@ -76,7 +82,8 @@ block content
         .col-lg-8.col-lg-offset-2
           h2= __("rsvp")
           span.section-icon.rsvp-icon(aria-hidden="true" data-icon!="&#xe602;")
-          h4!= __("rsvp request")
+          h4!= __("rsvp comment")
+          h3!= __("rsvp request")
           flash:messages
           form(ng-submit="addRsvp()")
             div.form-group.col-xs-12.col-sm-12
@@ -93,14 +100,11 @@ block content
               label.btn.btn-success.btn-lg(ng-model="assistChoice" ng-click="assist = true" btn-radio="true") yes
               label.btn.btn-danger.btn-lg(ng-model="assistChoice" ng-click="assist = false" btn-radio="false") no
             div.form-group.col-xs-12.col-sm-12(ng-show="assist")
-                h3= __("accommodations")                
-                p= __("accommodations deal")
-                p= __("accommodations text")
+                p= __("rsvp transportation")
                 h3= __("rsvp sleep")
-                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega Car'")= __("rsvp option 3")
-                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega no car'")= __("rsvp option 4")
-                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid Car'")= __("rsvp option 1")
-                label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid no car'")= __("rsvp option 2")
+                div.btn-link
+                  label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid'")= __("rsvp option 1")
+                  label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega'")= __("rsvp option 2")
             div.form-group.col-xs-12.col-sm-12
               div.col-sm-6.col-sm-offset-3
                 button.btn.btn-success.btn-lg.btn-block(type="submit")= __("confirm")
@@ -132,28 +136,30 @@ block content
                 div.col-sm-6.col-sm-offset-3
                   button.btn.btn-primary.btn-lg.btn-block(type="submit")= __("confirm")
 
-  section#music.container-fluid.content-section.text-center(ng-controller="adviceCtrl")
+  section#music.container-fluid.content-section.text-center(ng-controller="musicCtrl")
       .col-lg-8.col-lg-offset-2
         h2= __("music")
         span.section-icon.rsvp-icon(aria-hidden="true" data-icon!="&#xe603;")
-        h4= __("advice intro")
-        div.panel.panel-default(ng-repeat="advice in adviceList | orderBy: '-created' | limitTo:3")
+        h4= __("music info")
+        div.panel.panel-default(ng-repeat="song in musicList | orderBy: '-created' | limitTo:3")
           div.panel-heading
-            h3.panel-title.advice-name {{advice.name}} 
-              small at {{advice.created | date:'dd-MM-yyyy HH:mm:ss'}}
+            h3.panel-title.advice-name {{song.name}} 
           div.panel-body
-            p.advice-content {{advice.content}}
+            p.advice-content {{song.artist}}
+            p.advice-content {{song.title}}
         div.advice-form
-          h3 Give advice 
+          h3 Request a song
           flash:messages
-          form(ng-submit="addAdvice()")
+          form(ng-submit="addSong()")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("full name") ng-model="name")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
-                label Advice
-                textarea.form-control(rows="4" ng-model="content")
+                input.form-control.input-lg(type="text" placeholder=__("artist") ng-model="artist")
+            div.form-group.col-xs-12.col-sm-12
+              div.col-xs-12.col-sm-12
+                input.form-control.input-lg(type="text" placeholder=__("song title") ng-model="title")
             div.form-group.col-xs-12.col-sm-12
                 div.col-sm-6.col-sm-offset-3
                   button.btn.btn-primary.btn-lg.btn-block(type="submit")= __("confirm")

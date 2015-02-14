@@ -113,3 +113,56 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorag
       }
     
     }])
+
+weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage','flash', 
+    function($scope, $http, musicStorage, flash) {
+      $scope.musicList = [];
+      $scope.message = '';
+      musicStorage.get()
+                    .success(function(data) {
+                      $scope.musicList = data;
+                    
+                    })
+                    .error(function(data) {
+                      $scope.error = 'Error: ' + data;
+                      console.log('Error: ' + data);
+                    });
+
+
+      $scope.addSong = function() {
+        if(!$scope.name || !$scope.artist || !$scope.title) {
+          flash('danger', 'Error: Please fill the fields');
+          return;
+        }
+        var newSong = {
+          name: $scope.name.trim(),
+          artist: $scope.artist.trim(),
+          title: $scope.title.trim(),
+        };
+        
+        musicStorage.post(newSong)
+                      .success(function(data) {
+                        $scope.name = '';
+                        $scope.artist = '';
+                        $scope.title = '';
+                        $scope.musicList = data;
+                        flash('success', 'Song requested!');
+                      })
+                      .error(function(data) {
+                        flash('danger', 'Error: ' + data);
+                        console.log('Error: ' + data);
+                      });
+      }      
+
+      $scope.removeSong = function(itemId) {
+        adviceStorage.delete(itemId)
+                      .success(function(data) {
+                        $scope.musicList = data;
+                      })
+                      .error(function(data) {
+                        flash('danger', 'Error: ' + data);
+                        console.log('Error: ' + data);
+                      });        
+      }
+    
+    }])
