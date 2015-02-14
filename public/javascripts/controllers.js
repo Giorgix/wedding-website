@@ -155,7 +155,7 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
       }      
 
       $scope.removeSong = function(itemId) {
-        adviceStorage.delete(itemId)
+        musicStorage.delete(itemId)
                       .success(function(data) {
                         $scope.musicList = data;
                       })
