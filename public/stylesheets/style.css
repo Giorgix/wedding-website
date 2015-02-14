@@ -400,6 +400,10 @@ body {
   background-color: #705F7F;
   color: #FFF;
 }
+#accommodations {
+  background-color: #2F3851;
+  color: #fff;
+}
 #rsvp {
   background-color: #52928F;
   color: #fff;
@@ -407,6 +411,9 @@ body {
 #advice {
   background-color: #6D6D6D;
   color: #fff; 
+}
+#music {
+  background-color: #DCE0EA;
 }
 #contact {
   background-color: #454545;
@@ -438,6 +445,9 @@ body {
 }
 .date-icon {
   color: #2F2738;
+}
+.accommodations-icon {
+  color: #161A26;
 }
 .rsvp-icon {
   color: #2A4948;

@@ -22,9 +22,13 @@ block content
           li
             a.page-scroll(href='#about')= __("wedding info")
           li
+            a.page-scroll(href='#accommodations')= __("accommodations")
+          li
             a.page-scroll(href='#rsvp')=__("rsvp")
           li
             a.page-scroll(href='#advice')= __("advice")
+          li
+            a.page-scroll(href='#music')= __("music")
           li
             a.page-scroll(href='#contact')= __("contact")
 
@@ -56,6 +60,16 @@ block content
         p= __("wedding description")
   // Map Section
   #map
+  section#accommodations.container-fluid.content-section.text-center
+      .col-lg-8.col-lg-offset-2
+        h2= __("accommodations")
+        span.section-icon.accommodations-icon(aria-hidden="true" data-icon!="&#xe604;")
+        h4= __("wedding hour")
+        address
+          h5= __("wedding place")
+          div= __("wedding address")
+          div= __("wedding address 2")
+        p= __("wedding description")
 
   // Download Section
   section#rsvp.container-fluid.content-section.text-center(ng-controller="rsvpCtrl")
@@ -96,6 +110,32 @@ block content
       .col-lg-8.col-lg-offset-2
         h2= __("advice title")
         img.advice-image(src="images/novios.svg")
+        h4= __("advice intro")
+        div.panel.panel-default(ng-repeat="advice in adviceList | orderBy: '-created' | limitTo:3")
+          div.panel-heading
+            h3.panel-title.advice-name {{advice.name}} 
+              small at {{advice.created | date:'dd-MM-yyyy HH:mm:ss'}}
+          div.panel-body
+            p.advice-content {{advice.content}}
+        div.advice-form
+          h3 Give advice 
+          flash:messages
+          form(ng-submit="addAdvice()")
+            div.form-group.col-xs-12.col-sm-12
+              div.col-xs-12.col-sm-12
+                input.form-control.input-lg(type="text" placeholder=__("full name") ng-model="name")
+            div.form-group.col-xs-12.col-sm-12
+              div.col-xs-12.col-sm-12
+                label Advice
+                textarea.form-control(rows="4" ng-model="content")
+            div.form-group.col-xs-12.col-sm-12
+                div.col-sm-6.col-sm-offset-3
+                  button.btn.btn-primary.btn-lg.btn-block(type="submit")= __("confirm")
+
+  section#music.container-fluid.content-section.text-center(ng-controller="adviceCtrl")
+      .col-lg-8.col-lg-offset-2
+        h2= __("music")
+        span.section-icon.rsvp-icon(aria-hidden="true" data-icon!="&#xe603;")
         h4= __("advice intro")
         div.panel.panel-default(ng-repeat="advice in adviceList | orderBy: '-created' | limitTo:3")
           div.panel-heading
