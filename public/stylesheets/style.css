@@ -42,6 +42,7 @@ h2 {
 }
 .advice-name {
   color: #454545;
+  font-family: 'Lato',"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .font-hand {
     font-family: 'Great Vibes',"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -461,4 +462,9 @@ body {
 
 .btn-link {
   margin-bottom: 35px;
+}
+.panel-music .panel-heading {
+  background-color: #8C96AD;
+  color: #fff;
+  border-color: #8C96AD;
 }

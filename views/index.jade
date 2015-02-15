@@ -117,7 +117,8 @@ block content
         h4= __("advice intro")
         div.panel.panel-default(ng-repeat="advice in adviceList | orderBy: '-created' | limitTo:3")
           div.panel-heading
-            h3.panel-title.advice-name {{advice.name}} 
+            h3.panel-title.advice-name 
+              strong {{advice.name}} 
               small at {{advice.created | date:'dd-MM-yyyy HH:mm:ss'}}
           div.panel-body
             p.advice-content {{advice.content}}
@@ -134,19 +135,21 @@ block content
                 textarea.form-control(rows="4" ng-model="content")
             div.form-group.col-xs-12.col-sm-12
                 div.col-sm-6.col-sm-offset-3
-                  button.btn.btn-primary.btn-lg.btn-block(type="submit")= __("confirm")
+                  button.btn.btn-info.btn-lg.btn-block(type="submit")= __("send")
 
   section#music.container-fluid.content-section.text-center(ng-controller="musicCtrl")
       .col-lg-8.col-lg-offset-2
         h2= __("music")
         span.section-icon.rsvp-icon(aria-hidden="true" data-icon!="&#xe603;")
         h4= __("music info")
-        div.panel.panel-default(ng-repeat="song in musicList | orderBy: '-created' | limitTo:3")
+        div.panel.panel-music(ng-repeat="song in musicList | orderBy: '-created' | limitTo:3")
           div.panel-heading
-            h3.panel-title.advice-name {{song.name}} 
-          div.panel-body
-            p.advice-content {{song.artist}}
-            p.advice-content {{song.title}}
+            h3.panel-title {{song.artist}} 
+          div.panel-body 
+            strong {{song.title}}
+          div.panel-footer 
+            small Recommended by 
+            {{song.name}}
         div.advice-form
           h3 Request a song
           flash:messages
@@ -162,7 +165,7 @@ block content
                 input.form-control.input-lg(type="text" placeholder=__("song title") ng-model="title")
             div.form-group.col-xs-12.col-sm-12
                 div.col-sm-6.col-sm-offset-3
-                  button.btn.btn-primary.btn-lg.btn-block(type="submit")= __("confirm")
+                  button.btn.btn-primary.btn-lg.btn-block(type="submit")= __("send")
 
 
 
