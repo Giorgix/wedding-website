@@ -51,7 +51,10 @@ block content
   section#about.container-fluid.content-section.text-center
       .col-lg-8.col-lg-offset-2
         h2= __("wedding info")
-        span.section-icon.date-icon(aria-hidden="true" data-icon!="&#xe600;")
+        - if(getLocale() === 'en')
+          span.section-icon.date-icon(aria-hidden="true" data-icon!="&#xe600;")
+        - if(getLocale() === 'es')
+          span.section-icon.date-icon(aria-hidden="true" data-icon!="&#xe601;")
         h3= __("wedding hour")
         address
           div.btn-link
@@ -61,6 +64,7 @@ block content
           div= __("wedding address 2")
         p= __("wedding description 1")
         p= __("wedding description 2")
+
         hr
         h3.subtitle= __("dress code")
         p= __("wedding dress code")
@@ -98,6 +102,8 @@ block content
         .col-lg-8.col-lg-offset-2
           h2= __("rsvp")
           span.section-icon.rsvp-icon(aria-hidden="true" data-icon!="&#xe602;")
+          - if(getLocale() === 'en')
+            p= __("rsvp ad")
           h4!= __("rsvp comment")
           h3!= __("rsvp request")
           flash:messages
@@ -146,10 +152,10 @@ block content
           form(ng-submit="addAdvice()")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
-                input.form-control.input-lg(type="text" placeholder=__("full name") ng-model="name")
+                input.form-control.input-lg(type="text" placeholder=__("name") ng-model="name")
             div.form-group.col-xs-12.col-sm-12.mb
               div.col-xs-12.col-sm-12
-                label Advice
+                label= __("advice")
                 textarea.form-control(rows="4" ng-model="content")
             div.form-group.col-xs-12.col-sm-12
                 div.col-sm-6.col-sm-offset-3
@@ -167,15 +173,15 @@ block content
             div.panel-body 
               strong {{song.title}}
             div.panel-footer 
-              small Recommended by 
+              small= __("recommended")
               {{song.name}}
         div.advice-form
-          h3 Request a song
+          h3= __("request a song")
           flash:messages
           form(ng-submit="addSong()")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
-                input.form-control.input-lg(type="text" placeholder=__("full name") ng-model="name")
+                input.form-control.input-lg(type="text" placeholder=__("name") ng-model="name")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("artist") ng-model="artist")
