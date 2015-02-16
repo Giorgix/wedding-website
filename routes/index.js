@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 
 router.get('/lang/:locale', function(req, res, next) {
   res.cookie('locale', req.params.locale);
-  res.render('index');
+  res.redirect('/');
 })
 
 module.exports = router;

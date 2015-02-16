@@ -18,6 +18,9 @@ html {
 .mb {
   margin-bottom: 2.5em;
 }
+.inline {
+  display: inline-block;
+}
 
 h1,
 h2,
@@ -496,4 +499,13 @@ body {
   background-color: #8C96AD;
   color: #fff;
   border-color: #8C96AD;
+}
+.lang-bar {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #888888;
+  margin-left: 10px;
+}
+.img-flag {
+  width: 30px;
 }
