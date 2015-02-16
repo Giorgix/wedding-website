@@ -29,6 +29,7 @@
   "name val": "Upps! Dejanos saber quien eres!",
   "lastname val": "Tienes apellido no?",
   "email val": "Por favor escribe tu email para estar en contacto!",
+  "email val type": "Por favor escribe un email valido",
   "advice val": "Por favor... algun comentario no?",
   "confirm": "confirmar",
   "send": "enviar",
@@ -45,6 +46,6 @@
   "artist val": "¿La canción sin intérprete?",
   "song val": "¿La canción sin nombre?",
   "contact": "contacto",
-  "contact text": "para cualquier duda o pregunta.",
+  "contact text": "Para cualquier duda o pregunta o invitarnos a algo",
   "contact title": "Llama o escribenos"
 }
