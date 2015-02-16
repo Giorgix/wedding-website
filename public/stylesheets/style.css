@@ -21,6 +21,10 @@ html {
     height: 100%;
 }
 
+.mb {
+  margin-bottom: 2.5em;
+}
+
 h1,
 h2,
 h3,
@@ -40,8 +44,11 @@ h2 {
     font-weight: 400;
   
 }
-h4 {
+h4, .panel-footer {
   font-family: 'Lato',"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.panel-footer small{
+  color: #8E8E8E;
 }
 .advice-name {
   color: #3A3A3A;
@@ -468,11 +475,24 @@ body {
 .accommodations-icon {
   color: #283044;
 }
-.rsvp-icon {
+.panel-accommodations .panel-heading{
+  background-color: #F7F7F7;
+  color: #283044;
+}
+.panel-accommodations .panel-body {
+  padding-bottom: 0;
+}
+.rsvp-icon, #rsvp h4{
   color: #2A4948;
 }
 .advice-image {
   margin-bottom: 35px;
+}
+#advice h4 {
+  color: #1E1E1E;
+}
+.music-icon, #music h4 {
+  color: #585F6D;
 }
 
 .btn-link {
