@@ -515,3 +515,6 @@ input.ng-invalid.ng-touched {
 input.ng-valid.ng-touched {
   border: 2px solid green;
 }
+.val-error {
+  font-size: 18px;
+}

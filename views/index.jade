@@ -124,18 +124,18 @@ block content
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("first name") name="rsvpName" ng-model="firstName" required)
                 div(ng-show="rsvpForm.$submitted || rsvpForm.rsvpName.$touched")
-                  div(ng-show="rsvpForm.rsvpName.$error.required")= __("name val")
+                  div.val-error(ng-show="rsvpForm.rsvpName.$error.required")= __("name val")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("last name") ng-model="lastName" name="rsvpLastName" required)
                 div(ng-show="rsvpForm.$submitted || rsvpForm.rsvpLastName.$touched")
-                  div(ng-show="rsvpForm.rsvpLastName.$error.required")= __("lastname val")
+                  div.val-error(ng-show="rsvpForm.rsvpLastName.$error.required")= __("lastname val")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="email" placeholder=__("email") ng-model="email" name="rsvpEmail" required)
                 div(ng-show="rsvpForm.$submitted || rsvpForm.rsvpEmail.$touched")
-                  div(ng-show="rsvpForm.rsvpEmail.$error.required")= __("email val")
-                  div(ng-show="rsvpForm.rsvpEmail.$error.email")= __("email val type")
+                  div.val-error(ng-show="rsvpForm.rsvpEmail.$error.required")= __("email val")
+                  div.val-error(ng-show="rsvpForm.rsvpEmail.$error.email")= __("email val type")
 
             div.form-group.col-xs-12.col-sm-12.mb
               h3= __("rsvp assist")
@@ -175,13 +175,13 @@ block content
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("name") name="adviceName" ng-model="name" required)
                 div(ng-show="adviceForm.$submitted || adviceForm.adviceName.$touched")
-                  div(ng-show="adviceForm.adviceName.$error.required")= __("name val")
+                  div.val-error(ng-show="adviceForm.adviceName.$error.required")= __("name val")
             div.form-group.col-xs-12.col-sm-12.mb
               div.col-xs-12.col-sm-12
                 label= __("advice")
                 textarea.form-control(rows="4" ng-model="content" name="adviceContent" required)
                 div(ng-show="adviceForm.$submitted || adviceForm.adviceContent.$touched")
-                  div(ng-show="adviceForm.adviceContent.$error.required")= __("advice val")
+                  div.val-error(ng-show="adviceForm.adviceContent.$error.required")= __("advice val")
 
             div.form-group.col-xs-12.col-sm-12
                 div.col-sm-6.col-sm-offset-3
@@ -210,16 +210,16 @@ block content
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("name") ng-model="name" name="musicName" required)
                 div(ng-show="musicForm.$submitted || musicForm.musicName.$touched")
-                  span(ng-show="musicForm.musicName.$error.required")= __("name val")
+                  div.val-error(ng-show="musicForm.musicName.$error.required")= __("name val")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("artist") ng-model="artist" name="musicArtist" required)
                 div(ng-show="musicForm.$submitted || musicForm.musicArtist.$touched")
-                  div(ng-show="musicForm.musicArtist.$error.required")= __("artist val")
+                  div.val-error(ng-show="musicForm.musicArtist.$error.required")= __("artist val")
             div.form-group.col-xs-12.col-sm-12.mb
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("song title") ng-model="title" name="musicSong" required)
-                div(ng-show="musicForm.$submitted || musicForm.musicSong.$touched")
+                div.val-error(ng-show="musicForm.$submitted || musicForm.musicSong.$touched")
                   div(ng-show="musicForm.musicSong.$error.required")= __("song val")
             div.form-group.col-xs-12.col-sm-12
                 div.col-sm-6.col-sm-offset-3

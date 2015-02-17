@@ -20,7 +20,7 @@
         <td> {{rsvp.lastName}}</td>
         <td> {{rsvp.email}}</td>
         <td ng-show="{{rsvp.assist}}"> YES</td>
-        <td ng-show="!{{rsvp.assist}}"> NO</td>
+        <td ng-hide="{{rsvp.assist}}"> NO</td>
         <td> {{rsvp.sleepPref}}</td>
         <td> <button class="btn btn-danger" ng-click="removeRsvp(rsvp._id)"> Delete</td>
       </tr>

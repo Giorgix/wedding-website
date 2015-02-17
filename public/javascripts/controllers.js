@@ -22,10 +22,6 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
 
 
       $scope.addRsvp = function(form) {
-        if(!$scope.firstName || !$scope.lastName || !$scope.email) {
-          //flash('danger', 'Error: Please fill the fields');
-          return;
-        }
         var newRsvp = {
           firstName: $scope.firstName.trim(),
           lastName: $scope.lastName.trim(),
