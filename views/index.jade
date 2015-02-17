@@ -165,7 +165,8 @@ block content
           div.panel-body
             p.advice-content {{advice.content}}
           hr.advice-hr
-        button.btn.btn-default(ng-click= "limit = limit + 5")= __("see more")
+        div(ng-show="adviceList.length > limit").col-md-12
+          button.btn.btn-default(ng-click= "limit = limit + 5")= __("see more")
         div.advice-form
           h4= __("advice intro")
           div(id="advice-msg" flash-alert active-class="in alert" class="fade")
@@ -202,7 +203,7 @@ block content
               div.panel-footer 
                 small= __("recommended")
                 {{song.name}}
-          div.col-md-12
+          div(ng-show="musicList.length > limit").col-md-12
             button.btn.btn-default(ng-click= "limit = limit + 3")= __("see more")
         div.advice-form.col-md-12
             h3= __("request a song")
