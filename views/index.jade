@@ -115,24 +115,27 @@ block content
             p= __("rsvp ad")
           h4!= __("rsvp comment")
           h3!= __("rsvp request")
+          div(id="rsvp-msg" flash-alert active-class="in alert" class="fade")
+            strong(class="alert-heading") Boo!
+            span(class="alert-message") {{flash.message}}
           //flash:messages
-          form(novalidate ng-submit="addRsvp()" name="form")
+          form(novalidate ng-submit="addRsvp(rsvpForm)" name="rsvpForm")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("first name") name="rsvpName" ng-model="firstName" required)
-                div(ng-show="form.$submitted || form.rsvpName.$touched")
-                  div(ng-show="form.rsvpName.$error.required")= __("name val")
+                div(ng-show="rsvpForm.$submitted || rsvpForm.rsvpName.$touched")
+                  div(ng-show="rsvpForm.rsvpName.$error.required")= __("name val")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("last name") ng-model="lastName" name="rsvpLastName" required)
-                div(ng-show="form.$submitted || form.rsvpLastName.$touched")
-                  div(ng-show="form.rsvpLastName.$error.required")= __("lastname val")
+                div(ng-show="rsvpForm.$submitted || rsvpForm.rsvpLastName.$touched")
+                  div(ng-show="rsvpForm.rsvpLastName.$error.required")= __("lastname val")
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="email" placeholder=__("email") ng-model="email" name="rsvpEmail" required)
-                div(ng-show="form.$submitted || form.rsvpEmail.$touched")
-                  div(ng-show="form.rsvpEmail.$error.required")= __("email val")
-                  div(ng-show="form.rsvpEmail.$error.email")= __("email val type")
+                div(ng-show="rsvpForm.$submitted || rsvpForm.rsvpEmail.$touched")
+                  div(ng-show="rsvpForm.rsvpEmail.$error.required")= __("email val")
+                  div(ng-show="rsvpForm.rsvpEmail.$error.email")= __("email val type")
 
             div.form-group.col-xs-12.col-sm-12.mb
               h3= __("rsvp assist")
@@ -165,7 +168,9 @@ block content
           hr.advice-hr
         div.advice-form
           h3 Give advice 
-          form(ng-submit="addAdvice()" name="adviceForm" novalidate)
+          div(id="advice-msg" flash-alert active-class="in alert" class="fade")
+            strong(class="alert-message") {{flash.message}}
+          form(ng-submit="addAdvice(adviceForm)" name="adviceForm" novalidate)
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("name") name="adviceName" ng-model="name" required)
@@ -198,8 +203,9 @@ block content
               {{song.name}}
         div.advice-form
           h3= __("request a song")
-          //flash:messages
-          form(ng-submit="addSong()" name="musicForm" novalidate)
+          div(id="music-msg" flash-alert active-class="in alert" class="fade")
+            strong(class="alert-message") {{flash.message}}
+          form(ng-submit="addSong(musicForm)" name="musicForm" novalidate)
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
                 input.form-control.input-lg(type="text" placeholder=__("name") ng-model="name" name="musicName" required)

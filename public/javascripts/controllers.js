@@ -1,4 +1,4 @@
-var weddingAppControllers = angular.module('weddingAppControllers', ['ui.bootstrap', 'flash']);
+var weddingAppControllers = angular.module('weddingAppControllers', ['ui.bootstrap']);
 
 weddingAppControllers.controller('collapseCtrl', function($scope) {
   $scope.isCollapsed = true;
@@ -21,9 +21,9 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
                     });
 
 
-      $scope.addRsvp = function() {
+      $scope.addRsvp = function(form) {
         if(!$scope.firstName || !$scope.lastName || !$scope.email) {
-          flash('danger', 'Error: Please fill the fields');
+          //flash('danger', 'Error: Please fill the fields');
           return;
         }
         var newRsvp = {
@@ -41,10 +41,12 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
                         $scope.email = '';
                         $scope.sleepPrefChoice = '';
                         $scope.rsvps = data;
-                        flash('success', 'Confirmation sent!');
+                        flash.to('rsvp-msg').success =  'Confirmation sent!';
+                        form.$setPristine();
+                        form.$setUntouched();
                       })
                       .error(function(data) {
-                        flash('danger', 'Error: ' + data);
+                        flash.to('rsvp-msg').error =  'Error: ' + data;
                         console.log('Error: ' + data);
                       });
       }      
@@ -78,11 +80,7 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorag
                     });
 
 
-      $scope.addAdvice = function() {
-        if(!$scope.name || !$scope.content) {
-          flash('danger', 'Error: Please fill the fields');
-          return;
-        }
+      $scope.addAdvice = function(form) {
         var newAdvice = {
           name: $scope.name.trim(),
           content: $scope.content.trim()
@@ -93,10 +91,12 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorag
                         $scope.name = '';
                         $scope.content = '';
                         $scope.adviceList = data;
-                        flash('success', 'Advice sent!');
+                        flash.to('advice-msg').success =  'Advice sent!';
+                        form.$setPristine();
+                        form.$setUntouched();
                       })
                       .error(function(data) {
-                        flash('danger', 'Error: ' + data);
+                        flash.to('advice-msg').error =  'Error: ' + data;
                         console.log('Error: ' + data);
                       });
       }      
@@ -129,7 +129,7 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
                     });
 
 
-      $scope.addSong = function() {
+      $scope.addSong = function(form) {
         if(!$scope.name || !$scope.artist || !$scope.title) {
           flash('danger', 'Error: Please fill the fields');
           return;
@@ -146,10 +146,13 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
                         $scope.artist = '';
                         $scope.title = '';
                         $scope.musicList = data;
-                        flash('success', 'Song requested!');
+                        flash.to('music-msg').success =  'Song requested!';
+                        form.$setPristine();
+                        form.$setUntouched();
                       })
                       .error(function(data) {
                         flash('danger', 'Error: ' + data);
+                        flash.to('music-msg').error =  'Error: ' + data;
                         console.log('Error: ' + data);
                       });
       }      
