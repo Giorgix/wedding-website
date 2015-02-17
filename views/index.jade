@@ -156,7 +156,6 @@ block content
       .col-lg-8.col-lg-offset-2
         h2= __("advice title")
         img.advice-image(src="images/novios.svg")
-        h4= __("advice intro")
         hr
         div(ng-repeat="advice in adviceList | orderBy: '-created' | limitTo:3")
           div.panel-heading
@@ -167,9 +166,10 @@ block content
             p.advice-content {{advice.content}}
           hr.advice-hr
         div.advice-form
-          h3 Give advice 
+          h4= __("advice intro")
           div(id="advice-msg" flash-alert active-class="in alert" class="fade")
             strong(class="alert-message") {{flash.message}}
+          - var langu = getLocale();
           form(ng-submit="addAdvice(adviceForm)" name="adviceForm" novalidate)
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12

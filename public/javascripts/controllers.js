@@ -63,6 +63,7 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
 weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorage','flash', 
     function($scope, $http, adviceStorage, flash) {
       $scope.adviceList = [];
+      $scope.language = 'espanol';
       $scope.message = '';
       $scope.orderField = 'created.ISODate';
       adviceStorage.get()
