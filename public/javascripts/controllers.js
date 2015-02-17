@@ -7,7 +7,6 @@ weddingAppControllers.controller('collapseCtrl', function($scope) {
 weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','flash', 
     function($scope, $http, rsvpStorage, flash) {
       $scope.rsvps = [];
-      $scope.message = '';
       $scope.sortField = 'lastName';
       $scope.reverse = false;
       rsvpStorage.get()
@@ -63,8 +62,7 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
 weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorage','flash', 
     function($scope, $http, adviceStorage, flash) {
       $scope.adviceList = [];
-      $scope.language = 'espanol';
-      $scope.message = '';
+      $scope.limit = 3;
       $scope.orderField = 'created.ISODate';
       adviceStorage.get()
                     .success(function(data) {
@@ -114,7 +112,7 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorag
 weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage','flash', 
     function($scope, $http, musicStorage, flash) {
       $scope.musicList = [];
-      $scope.message = '';
+      $scope.limit = 3;
       musicStorage.get()
                     .success(function(data) {
                       $scope.musicList = data;

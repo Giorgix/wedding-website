@@ -157,7 +157,7 @@ block content
         h2= __("advice title")
         img.advice-image(src="images/novios.svg")
         hr
-        div(ng-repeat="advice in adviceList | orderBy: '-created' | limitTo:3")
+        div(ng-repeat="advice in adviceList | orderBy: '-created' | limitTo:limit")
           div.panel-heading
             h3.panel-title.advice-name 
               strong {{advice.name}} 
@@ -165,11 +165,11 @@ block content
           div.panel-body
             p.advice-content {{advice.content}}
           hr.advice-hr
+        button.btn.btn-default(ng-click= "limit = limit + 5")= __("see more")
         div.advice-form
           h4= __("advice intro")
           div(id="advice-msg" flash-alert active-class="in alert" class="fade")
             strong(class="alert-message") {{flash.message}}
-          - var langu = getLocale();
           form(ng-submit="addAdvice(adviceForm)" name="adviceForm" novalidate)
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-12
@@ -192,38 +192,41 @@ block content
         h2= __("music")
         span.section-icon.music-icon(aria-hidden="true" data-icon!="&#xe603;")
         h4= __("music info")
-        div.col-md-4(ng-repeat="song in musicList | orderBy: '-created' | limitTo:3")
-          div.panel.panel-music
-            div.panel-heading
-              h3.panel-title {{song.artist}} 
-            div.panel-body 
-              strong {{song.title}}
-            div.panel-footer 
-              small= __("recommended")
-              {{song.name}}
-        div.advice-form
-          h3= __("request a song")
-          div(id="music-msg" flash-alert active-class="in alert" class="fade")
-            strong(class="alert-message") {{flash.message}}
-          form(ng-submit="addSong(musicForm)" name="musicForm" novalidate)
-            div.form-group.col-xs-12.col-sm-12
-              div.col-xs-12.col-sm-12
-                input.form-control.input-lg(type="text" placeholder=__("name") ng-model="name" name="musicName" required)
-                div(ng-show="musicForm.$submitted || musicForm.musicName.$touched")
-                  div.val-error(ng-show="musicForm.musicName.$error.required")= __("name val")
-            div.form-group.col-xs-12.col-sm-12
-              div.col-xs-12.col-sm-12
-                input.form-control.input-lg(type="text" placeholder=__("artist") ng-model="artist" name="musicArtist" required)
-                div(ng-show="musicForm.$submitted || musicForm.musicArtist.$touched")
-                  div.val-error(ng-show="musicForm.musicArtist.$error.required")= __("artist val")
-            div.form-group.col-xs-12.col-sm-12.mb
-              div.col-xs-12.col-sm-12
-                input.form-control.input-lg(type="text" placeholder=__("song title") ng-model="title" name="musicSong" required)
-                div.val-error(ng-show="musicForm.$submitted || musicForm.musicSong.$touched")
-                  div(ng-show="musicForm.musicSong.$error.required")= __("song val")
-            div.form-group.col-xs-12.col-sm-12
-                div.col-sm-6.col-sm-offset-3
-                  button.btn.btn-primary.btn-lg.btn-block(type="submit")= __("send")
+        div
+          div.col-md-4(ng-repeat="song in musicList | orderBy: '-created' | limitTo:limit")
+            div.panel.panel-music
+              div.panel-heading
+                h3.panel-title {{song.artist}} 
+              div.panel-body 
+                strong {{song.title}}
+              div.panel-footer 
+                small= __("recommended")
+                {{song.name}}
+          div.col-md-12
+            button.btn.btn-default(ng-click= "limit = limit + 3")= __("see more")
+        div.advice-form.col-md-12
+            h3= __("request a song")
+            div(id="music-msg" flash-alert active-class="in alert" class="fade")
+              strong(class="alert-message") {{flash.message}}
+            form(ng-submit="addSong(musicForm)" name="musicForm" novalidate)
+              div.form-group.col-xs-12.col-sm-12
+                div.col-xs-12.col-sm-12
+                  input.form-control.input-lg(type="text" placeholder=__("name") ng-model="name" name="musicName" required)
+                  div(ng-show="musicForm.$submitted || musicForm.musicName.$touched")
+                    div.val-error(ng-show="musicForm.musicName.$error.required")= __("name val")
+              div.form-group.col-xs-12.col-sm-12
+                div.col-xs-12.col-sm-12
+                  input.form-control.input-lg(type="text" placeholder=__("artist") ng-model="artist" name="musicArtist" required)
+                  div(ng-show="musicForm.$submitted || musicForm.musicArtist.$touched")
+                    div.val-error(ng-show="musicForm.musicArtist.$error.required")= __("artist val")
+              div.form-group.col-xs-12.col-sm-12.mb
+                div.col-xs-12.col-sm-12
+                  input.form-control.input-lg(type="text" placeholder=__("song title") ng-model="title" name="musicSong" required)
+                  div.val-error(ng-show="musicForm.$submitted || musicForm.musicSong.$touched")
+                    div(ng-show="musicForm.musicSong.$error.required")= __("song val")
+              div.form-group.col-xs-12.col-sm-12
+                  div.col-sm-6.col-sm-offset-3
+                    button.btn.btn-primary.btn-lg.btn-block(type="submit")= __("send")
 
 
 
