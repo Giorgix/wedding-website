@@ -14,7 +14,9 @@ html {
     width: 100%;
     height: 100%;
 }
-
+[data-sr] {
+  visibility: hidden;
+}
 .mb {
   margin-bottom: 2.5em;
 }
@@ -23,6 +25,9 @@ html {
 }
 address {
   font-size: 18px;
+}
+label {
+  font-weight: 400;
 }
 h1,
 h2,
@@ -496,7 +501,7 @@ body {
   margin-bottom: 35px;
 }
 #advice h4 {
-  color: #1E1E1E;
+  color: #CCCCCC;
 }
 .music-icon, #music h4 {
   color: #585F6D;

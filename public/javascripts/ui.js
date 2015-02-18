@@ -176,3 +176,10 @@ function init() {
         icon: image
     });
 }
+// Scroll Reveal Animations
+var config = {
+  mobile: true,
+  reset: true,
+  vFactor: 0.30
+}
+window.sr = new scrollReveal(config);

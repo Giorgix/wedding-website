@@ -49,16 +49,16 @@ block content
         .container
           .row
             .col-md-8.col-md-offset-2
-              h1.brand-heading.font-hand J
+              h1.brand-heading.font-hand.animated.fadeInDown J
                 small &
                 | J
-              h2= __("spanish wedding")
+              h2.animated.fadeInUp= __("spanish wedding")
               p.intro-text= __("intro text")
               a.btn.btn-circle.page-scroll(href='#about')
                 i.fa.fa-angle-double-down.animated
   // About Section
   section#about.container-fluid.content-section.text-center
-      .col-lg-8.col-lg-offset-2
+    .col-lg-8.col-lg-offset-2(data-sr="enter left move 150px over 1s reset")
         h2= __("wedding info")
         - if(getLocale() === 'en')
           span.section-icon.date-icon(aria-hidden="true" data-icon!="&#xe600;")
@@ -80,7 +80,7 @@ block content
   // Map Section
   #map
   section#accommodations.container-fluid.content-section.text-center
-      .col-lg-8.col-lg-offset-2
+      .col-lg-8.col-lg-offset-2(data-sr="enter right move 150px over 1s")
         h2= __("accommodations")
         span.section-icon.accommodations-icon(aria-hidden="true" data-icon!="&#xe604;")
         h4= __("accommodations info")
@@ -108,7 +108,7 @@ block content
 
 
   section#rsvp.container-fluid.content-section.text-center(ng-controller="rsvpCtrl")
-        .col-lg-8.col-lg-offset-2
+        .col-lg-8.col-lg-offset-2(data-sr="enter top and scale up 30% over 1.5s")
           h2= __("rsvp")
           span.section-icon.rsvp-icon(aria-hidden="true" data-icon!="&#xe602;")
           - if(getLocale() === 'en')
@@ -120,17 +120,17 @@ block content
           //flash:messages
           form(novalidate ng-submit="addRsvp(rsvpForm)" name="rsvpForm")
             div.form-group.col-xs-12.col-sm-12
-              div.col-xs-12.col-sm-12
+              div.col-xs-12.col-sm-8.col-md-offset-2
                 input.form-control.input-lg(type="text" placeholder=__("first name") name="rsvpName" ng-model="firstName" required)
                 div(ng-show="rsvpForm.$submitted || rsvpForm.rsvpName.$touched")
                   div.val-error(ng-show="rsvpForm.rsvpName.$error.required")= __("name val")
             div.form-group.col-xs-12.col-sm-12
-              div.col-xs-12.col-sm-12
+              div.col-xs-12.col-sm-8.col-md-offset-2
                 input.form-control.input-lg(type="text" placeholder=__("last name") ng-model="lastName" name="rsvpLastName" required)
                 div(ng-show="rsvpForm.$submitted || rsvpForm.rsvpLastName.$touched")
                   div.val-error(ng-show="rsvpForm.rsvpLastName.$error.required")= __("lastname val")
             div.form-group.col-xs-12.col-sm-12
-              div.col-xs-12.col-sm-12
+              div.col-xs-12.col-sm-8.col-md-offset-2
                 input.form-control.input-lg(type="email" placeholder=__("email") ng-model="email" name="rsvpEmail" required)
                 div(ng-show="rsvpForm.$submitted || rsvpForm.rsvpEmail.$touched")
                   div.val-error(ng-show="rsvpForm.rsvpEmail.$error.required")= __("email val")
@@ -150,7 +150,7 @@ block content
                   label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Madrid'")= __("rsvp option 1")
                   label.btn.btn-default(ng-model="sleepPrefChoice" btn-radio="'Brihuega'")= __("rsvp option 2")
             div.form-group.col-xs-12.col-sm-12
-              div.col-sm-6.col-sm-offset-3
+              div.col-sm-4.col-sm-offset-4
                 - if(getLocale() === 'en')
                   button.btn.btn-success.btn-lg.btn-block(ng-click= "langu = 'en'" type="submit")= __("confirm")
                 - if(getLocale() === 'es')
@@ -158,7 +158,7 @@ block content
 
   // Advice Section
   section#advice.container-fluid.content-section.text-center(ng-controller="adviceCtrl")
-      .col-lg-8.col-lg-offset-2
+      .col-lg-8.col-lg-offset-2(data-sr="enter bottom and scale up 30% over 1.5s")
         h2= __("advice title")
         img.advice-image(src="images/novios.svg")
         hr
@@ -178,19 +178,18 @@ block content
             strong(class="alert-message") {{flash.message}}
           form(ng-submit="addAdvice(adviceForm)" name="adviceForm" novalidate)
             div.form-group.col-xs-12.col-sm-12
-              div.col-xs-12.col-sm-12
+              div.col-xs-12.col-sm-8.col-md-offset-2
                 input.form-control.input-lg(type="text" placeholder=__("name") name="adviceName" ng-model="name" required)
                 div(ng-show="adviceForm.$submitted || adviceForm.adviceName.$touched")
                   div.val-error(ng-show="adviceForm.adviceName.$error.required")= __("name val")
             div.form-group.col-xs-12.col-sm-12.mb
-              div.col-xs-12.col-sm-12
-                label= __("advice")
-                textarea.form-control(rows="4" ng-model="content" name="adviceContent" required)
+              div.col-xs-12.col-sm-8.col-md-offset-2
+                textarea.form-control(rows="4" ng-model="content" name="adviceContent" placeholder=__("write advice") required)
                 div(ng-show="adviceForm.$submitted || adviceForm.adviceContent.$touched")
                   div.val-error(ng-show="adviceForm.adviceContent.$error.required")= __("advice val")
 
             div.form-group.col-xs-12.col-sm-12
-                div.col-sm-6.col-sm-offset-3
+                div.col-sm-4.col-sm-offset-4
                   - if(getLocale() === 'en')
                     button.btn.btn-info.btn-lg.btn-block(ng-click= "langu = 'en'" type="submit")= __("send")
                   - if(getLocale() === 'es')
@@ -198,10 +197,10 @@ block content
 
 
   section#music.container-fluid.content-section.text-center(ng-controller="musicCtrl")
-      .col-lg-8.col-lg-offset-2
+      .col-lg-8.col-lg-offset-2(data-sr="hustle 20% over 1.5s")
         h2= __("music")
         span.section-icon.music-icon(aria-hidden="true" data-icon!="&#xe603;")
-        h4= __("music info")
+        h3= __("music info")
         div
           div.col-md-4(ng-repeat="song in musicList | orderBy: '-created' | limitTo:limit")
             div.panel.panel-music
@@ -214,27 +213,27 @@ block content
           div(ng-show="musicList.length > limit").col-md-12
             button.btn.btn-default(ng-click= "limit = limit + 3")= __("see more")
         div.advice-form.col-md-12
-            h3= __("request a song")
+            h4= __("request a song")
             div(id="music-msg" flash-alert active-class="in alert" class="fade")
               strong(class="alert-message") {{flash.message}}
             form(ng-submit="addSong(musicForm)" name="musicForm" novalidate)
               div.form-group.col-xs-12.col-sm-12
-                div.col-xs-12.col-sm-12
+                div.col-xs-12.col-sm-8.col-md-offset-2
                   input.form-control.input-lg(type="text" placeholder=__("name") ng-model="name" name="musicName" required)
                   div(ng-show="musicForm.$submitted || musicForm.musicName.$touched")
                     div.val-error(ng-show="musicForm.musicName.$error.required")= __("name val")
               div.form-group.col-xs-12.col-sm-12
-                div.col-xs-12.col-sm-12
+                div.col-xs-12.col-sm-8.col-md-offset-2
                   input.form-control.input-lg(type="text" placeholder=__("artist") ng-model="artist" name="musicArtist" required)
                   div(ng-show="musicForm.$submitted || musicForm.musicArtist.$touched")
                     div.val-error(ng-show="musicForm.musicArtist.$error.required")= __("artist val")
               div.form-group.col-xs-12.col-sm-12.mb
-                div.col-xs-12.col-sm-12
+                div.col-xs-12.col-sm-8.col-md-offset-2
                   input.form-control.input-lg(type="text" placeholder=__("song title") ng-model="title" name="musicSong" required)
                   div.val-error(ng-show="musicForm.$submitted || musicForm.musicSong.$touched")
                     div(ng-show="musicForm.musicSong.$error.required")= __("song val")
               div.form-group.col-xs-12.col-sm-12
-                  div.col-sm-6.col-sm-offset-3
+                  div.col-sm-4.col-sm-offset-4
                     - if(getLocale() === 'en')
                       button.btn.btn-primary.btn-lg.btn-block(ng-click= "langu = 'en'" type="submit")= __("send")
                     - if(getLocale() === 'es')
@@ -244,7 +243,7 @@ block content
 
   // Contact Section
   section#contact.container-fluid.content-section.text-center
-      .col-lg-8.col-lg-offset-2
+      .col-lg-8.col-lg-offset-2(data-sr="scale down 20% over 1.5s")
         h2= __("contact title")
         h4= __("contact text")
         - if(getLocale() === 'en')
