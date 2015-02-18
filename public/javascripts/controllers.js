@@ -8,6 +8,7 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
     function($scope, $http, rsvpStorage, flash) {
       $scope.rsvps = [];
       $scope.sortField = 'lastName';
+      $scope.langu = '';
       $scope.reverse = false;
       rsvpStorage.get()
                     .success(function(data) {
@@ -36,7 +37,12 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
                         $scope.email = '';
                         $scope.sleepPrefChoice = '';
                         $scope.rsvps = data;
-                        flash.to('rsvp-msg').success =  'Confirmation sent!';
+                        if($scope.langu === 'en') {
+                          flash.to('rsvp-msg').success =  "Confirmation sent! Thanks!";
+                        } else {
+                          flash.to('rsvp-msg').success =  'Confirmación mandada! Gracias!';
+                        }
+
                         form.$setPristine();
                         form.$setUntouched();
                       })
@@ -63,6 +69,7 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorag
     function($scope, $http, adviceStorage, flash) {
       $scope.adviceList = [];
       $scope.limit = 3;
+      $scope.langu = '';
       $scope.orderField = 'created.ISODate';
       adviceStorage.get()
                     .success(function(data) {
@@ -86,7 +93,11 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorag
                         $scope.name = '';
                         $scope.content = '';
                         $scope.adviceList = data;
-                        flash.to('advice-msg').success =  'Advice sent!';
+                        if($scope.langu === 'en') {
+                          flash.to('advice-msg').success =  'Advice sent!';
+                        } else {
+                          flash.to('advice-msg').success =  'Consejo mandado!';
+                        }
                         form.$setPristine();
                         form.$setUntouched();
                       })
@@ -113,6 +124,7 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
     function($scope, $http, musicStorage, flash) {
       $scope.musicList = [];
       $scope.limit = 3;
+      $scope.langu = 'en';
       musicStorage.get()
                     .success(function(data) {
                       $scope.musicList = data;
@@ -125,10 +137,6 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
 
 
       $scope.addSong = function(form) {
-        if(!$scope.name || !$scope.artist || !$scope.title) {
-          flash('danger', 'Error: Please fill the fields');
-          return;
-        }
         var newSong = {
           name: $scope.name.trim(),
           artist: $scope.artist.trim(),
@@ -141,7 +149,11 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
                         $scope.artist = '';
                         $scope.title = '';
                         $scope.musicList = data;
-                        flash.to('music-msg').success =  'Song requested!';
+                        if($scope.langu === 'en') {
+                          flash.to('music-msg').success =  'Song requested!';
+                        } else {
+                          flash.to('music-msg').success =  'Canción pedida!';
+                        }
                         form.$setPristine();
                         form.$setUntouched();
                       })
