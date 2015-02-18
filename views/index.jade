@@ -138,11 +138,12 @@ block content
 
             div.form-group.col-xs-12.col-sm-12.mb
               h3= __("rsvp assist")
-              label.btn.btn-success.btn-lg(ng-model="assistChoice" ng-click="assist = true" btn-radio="true") yes
-              label.btn.btn-danger.btn-lg(ng-model="assistChoice" ng-click="assist = false" btn-radio="false") no
-            div.form-group.col-xs-12.col-sm-12(ng-show="assist == false")
-              h3= __("we sorry")
-            div.form-group.col-xs-12.col-sm-12(ng-show="assist")
+              a.btn.btn-success.btn-lg.page-scroll(href="#textConfirm" ng-model="assistChoice" ng-click="assist = true" btn-radio="true")= __("yes")
+              a.btn.btn-danger.btn-lg.page-scroll(href="#textConfirm" ng-model="assistChoice" ng-click="assist = false" btn-radio="false")= __("no")
+            div#textConfirm
+              div.form-group.col-xs-12.col-sm-12(ng-show="assist == false")
+                h3= __("we sorry")
+              div.form-group.col-xs-12.col-sm-12(ng-show="assist")
                 h3= __("awesome")
                 p= __("rsvp transportation")
                 h3= __("rsvp sleep")

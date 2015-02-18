@@ -494,8 +494,11 @@ body {
 .panel-accommodations .panel-body {
   padding-bottom: 0;
 }
-.rsvp-icon, #rsvp h4{
+.rsvp-icon{
   color: #2A4948;
+}
+#rsvp h4 {
+  color: #101E1E;
 }
 .advice-image {
   margin-bottom: 35px;

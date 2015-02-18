@@ -16,12 +16,14 @@
    "booking": "reservar",
    "call": "llamar",
   "rsvp": "confirmación",
-  "rsvp comment": "Aunque no puedas venir sientete libre de dejar cualquier consejo, recuerdo o recomendar alguna cancion para el dia de la boda",
+  "rsvp comment": "Aunque no puedas venir siéntete libre de dejar cualquier consejo, recuerdo o recomendar alguna canción para el día de la boda",
   "rsvp request": "Por favor, confirmar por cada invitado antes del 12 de abril de 2015.", 
   "first name": "Nombre",
   "last name": "Apellidos",
   "email": "Correo electrónico",
   "rsvp assist": "¿vas a venir a la boda?",
+  "yes": "sí",
+  "no": "no",
   "we sorry": "Sentimos oir eso... Nos vemos pronto!",
   "awesome": "genial!",
   "rsvp sleep": "¿donde vas a dormir ese día?",
@@ -42,7 +44,7 @@
   "see more": "ver más",
   "name": "Tu nombre",
   "music": "música",
-  "music info": "Aquí tienes la oprtunidad de sugerir canciones para la boda (por supuesto tenemos derecho de veto jeje).",
+  "music info": "Aquí tienes la oportunidad de sugerir canciones para la boda. Por supuesto tenemos derecho de veto ;)",
   "request a song": "Pide una canción",
   "recommended": "Petición de ",
   "artist": "Artista",
@@ -51,5 +53,5 @@
   "song val": "¿La canción sin nombre?",
   "contact": "contacto",
   "contact text": "Para cualquier duda o pregunta o invitarnos a algo",
-  "contact title": "Llama o escribenos"
+  "contact title": "Llama o escríbenos"
 }
