@@ -21,7 +21,9 @@ html {
 .inline {
   display: inline-block;
 }
-
+address {
+  font-size: 18px;
+}
 h1,
 h2,
 h3,
@@ -43,6 +45,12 @@ h2 {
 }
 h4, .panel-footer {
   font-family: 'Lato',"Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
+h4 {
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 1em;
 }
 .panel-footer small{
   color: #8E8E8E;
@@ -465,6 +473,8 @@ body {
 }
 .subtitle {
   text-transform: uppercase;
+  font-weight: 400;
+  font-size: 18px;
 }
 .date-icon, address, #about .subtitle {
   color: #2F2738;
@@ -490,6 +500,15 @@ body {
 }
 .music-icon, #music h4 {
   color: #585F6D;
+}
+#music .panel-body {
+  font-size: 18px;
+}
+#contact a {
+  color: #AFAFAF;
+}
+#contact a:hover, #contact a:focus {
+  color: #219ab3;
 }
 
 .btn-link {

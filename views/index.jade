@@ -75,7 +75,7 @@ block content
         p= __("wedding description 2")
 
         hr
-        h3.subtitle= __("dress code")
+        h4.subtitle= __("dress code")
         p= __("wedding dress code")
   // Map Section
   #map
@@ -207,8 +207,7 @@ block content
             div.panel.panel-music
               div.panel-heading
                 h3.panel-title {{song.artist}} 
-              div.panel-body 
-                strong {{song.title}}
+              div.panel-body {{song.title}}
               div.panel-footer 
                 small= __("recommended")
                 {{song.name}}
