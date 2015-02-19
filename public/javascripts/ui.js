@@ -182,4 +182,18 @@ var config = {
   //reset: true,
   vFactor: 0.30
 }
+
 window.sr = new scrollReveal(config);
+
+// Focus the first invalid field when submit form
+$('form').submit(function() {
+  var firstInvalid = $(this).find('.ng-invalid:first');
+  if(firstInvalid.length != 0) {
+    firstInvalid.focus();
+  } else {
+    // TRY TO FOCUS MSG
+    /*$('html, body').animate({
+          scrollTop: $(this).offset().top
+              }, 2000);*/
+  }
+})

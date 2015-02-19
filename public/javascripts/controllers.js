@@ -22,6 +22,10 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
 
 
       $scope.addRsvp = function(form) {
+        console.log($scope.assistChoice);
+        if(!$scope.firstName || !$scope.lastName || !$scope.email || $scope.assistChoice === undefined){
+          return;
+        }
         var newRsvp = {
           firstName: $scope.firstName.trim(),
           lastName: $scope.lastName.trim(),
@@ -83,6 +87,9 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorag
 
 
       $scope.addAdvice = function(form) {
+        if(!$scope.name || !$scope.content){
+          return;
+        }
         var newAdvice = {
           name: $scope.name.trim(),
           content: $scope.content.trim()
@@ -137,6 +144,9 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
 
 
       $scope.addSong = function(form) {
+        if(!$scope.name || !$scope.artist || !$scope.title){
+          return;
+        }
         var newSong = {
           name: $scope.name.trim(),
           artist: $scope.artist.trim(),
@@ -175,4 +185,5 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
                       });        
       }
     
-    }])
+}])
+
