@@ -85,8 +85,19 @@ router.get('/advice', function(req, res) {
 })
 
 router.post('/advice', function(req, res) {
-  createItem(advice, req.body, res);
-  });
+  if(req.files.file) {
+    var imageUrl = '/uploads/' + req.files.file.name;
+    var adviceData = {
+      name: req.body.name,
+      content: req.body.content,
+      image: imageUrl
+    }
+    console.log(adviceData);
+    createItem(advice, adviceData, res);
+  } else {
+    createItem(advice, req.body, res);
+  }
+});
 
 router.delete('/advice/:id', isLoggedIn, function(req, res) {
   removeItem(advice, req.params.id, res);

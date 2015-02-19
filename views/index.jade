@@ -174,7 +174,7 @@ block content
           button.btn.btn-default(ng-click= "limit = limit + 5")= __("see more")
         div.advice-form
           h4= __("advice intro")
-          form(ng-submit="addAdvice(adviceForm)" name="adviceForm" novalidate)
+          form(ng-submit="addAdvice(adviceForm, $files)" name="adviceForm" enctype="multipart/form-data" novalidate)
             div.form-group.col-xs-12.col-sm-12
               div.col-xs-12.col-sm-8.col-md-offset-2
                 input.form-control.input-lg(type="text" placeholder=__("name") name="adviceName" ng-model="name" required)
@@ -185,7 +185,9 @@ block content
                 textarea.form-control(rows="4" ng-model="content" name="adviceContent" placeholder=__("write advice") required)
                 div(ng-show="adviceForm.$submitted || adviceForm.adviceContent.$touched")
                   div.val-error(ng-show="adviceForm.adviceContent.$error.required")= __("advice val")
-
+            div.form-group.col-xs-12.col-sm-12.mb
+              div.col-xs-12.col-sm-8.col-md-offset-2
+                div(class="btn btn-default" ng-file-select ng-model="files" accept=".jpg,.png") Upload ussing model $watch
             div.form-group.col-xs-12.col-sm-12
               div(id="advice-msg" flash-alert active-class="in alert" class="fade")
                 strong(class="alert-message") {{flash.message}}

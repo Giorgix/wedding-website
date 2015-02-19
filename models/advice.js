@@ -11,9 +11,17 @@ var advice = new Schema ({
     type: String,
     require: true
   },
+  image: {
+    type: String
+  },
   created: {
     type: Date,
     default: Date.now
+  },
+  aproved: {
+    type: Boolean,
+    required: true,
+    default: false
   }
 });
 

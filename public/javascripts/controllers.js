@@ -69,8 +69,12 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
     
     }])
 
-weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorage','flash', 
-    function($scope, $http, adviceStorage, flash) {
+weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', '$upload', 'adviceStorage','flash', 
+    function($scope, $http, $upload, adviceStorage, flash) {
+      //$scope.$watch('file', function() {
+        //console.log('watching');
+        //$scope.addAdvice($scope.files);
+      //});
       $scope.adviceList = [];
       $scope.limit = 3;
       $scope.langu = '';
@@ -86,34 +90,56 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'adviceStorag
                     });
 
 
-      $scope.addAdvice = function(form) {
+      $scope.addAdvice = function(form, files) {
         if(!$scope.name || !$scope.content){
           return;
         }
-        var newAdvice = {
-          name: $scope.name.trim(),
-          content: $scope.content.trim()
-        };
-        
-        adviceStorage.post(newAdvice)
-                      .success(function(data) {
-                        $scope.name = '';
-                        $scope.content = '';
-                        $scope.adviceList = data;
-                        if($scope.langu === 'en') {
-                          flash.to('advice-msg').success =  'Advice sent!';
-                        } else {
-                          flash.to('advice-msg').success =  'Consejo mandado!';
-                        }
-                        form.$setPristine();
-                        form.$setUntouched();
-                      })
-                      .error(function(data) {
-                        flash.to('advice-msg').error =  'Error: ' + data;
-                        console.log('Error: ' + data);
-                      });
-      }      
 
+        if($scope.files && $scope.files.length) {
+          $upload.upload({
+            url: '/api/advice',
+            file: $scope.files[0],
+            fields: {
+               name: $scope.name.trim(),
+               content: $scope.content.trim(),
+            }
+          }).success(function(data) {
+                          $scope.name = '';
+                          $scope.content = '';
+                          $scope.adviceList = data;
+                          if($scope.langu === 'en') {
+                            flash.to('advice-msg').success =  'Advice sent!';
+                          } else {
+                            flash.to('advice-msg').success =  'Consejo mandado!';
+                          }
+                          form.$setPristine();
+                          form.$setUntouched();
+                        })
+
+        } else {
+          var newAdvice = {
+            name: $scope.name.trim(),
+            content: $scope.content.trim()
+          };
+          adviceStorage.post(newAdvice)
+                        .success(function(data) {
+                          $scope.name = '';
+                          $scope.content = '';
+                          $scope.adviceList = data;
+                          if($scope.langu === 'en') {
+                            flash.to('advice-msg').success =  'Advice sent!';
+                          } else {
+                            flash.to('advice-msg').success =  'Consejo mandado!';
+                          }
+                          form.$setPristine();
+                          form.$setUntouched();
+                        })
+                        .error(function(data) {
+                          flash.to('advice-msg').error =  'Error: ' + data;
+                          console.log('Error: ' + data);
+                        });
+        }      
+      }
       $scope.removeAdvice = function(itemId) {
         adviceStorage.delete(itemId)
                       .success(function(data) {

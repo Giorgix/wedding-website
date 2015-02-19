@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var passport = require('passport');
 var bodyParser = require('body-parser');
+var multer = require('multer');
 var methodOverride = require('method-override');
 var i18n = require('i18n');
 var mongoose = require('mongoose');
@@ -39,6 +40,8 @@ i18n.configure({
 });
 
 var app = express();
+
+app.use(multer({dest: './public/uploads/'}));
 
 require('./config/passport')(passport);
 
