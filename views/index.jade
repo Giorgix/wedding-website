@@ -218,8 +218,8 @@ block content
               div.panel-heading
                 h3.panel-title {{song.artist}} 
               div.panel-body 
-                p {{song.title}}
-                div.col-md-8.col-md-offset-2(ng-show="song.videoID")
+                div {{song.title}}
+                div.song-video.col-md-8.col-md-offset-2(ng-show="song.videoID")
                   div.embed-responsive.embed-responsive-16by9
                     youtube-video(video-id="song.videoID")
               div.panel-footer 

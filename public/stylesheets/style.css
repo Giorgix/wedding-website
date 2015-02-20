@@ -512,6 +512,9 @@ body {
 #music .panel-body {
   font-size: 18px;
 }
+.song-video {
+  padding-top: 15px;
+}
 #contact a {
   color: #AFAFAF;
 }
