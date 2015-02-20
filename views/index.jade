@@ -169,6 +169,8 @@ block content
               small at {{advice.created | date:'dd-MM-yyyy HH:mm:ss'}}
           div.panel-body
             p.advice-content {{advice.content}}
+            div(ng-show="advice.image")
+              img.advice-image.img-responsive(src="{{advice.image}}")
           hr.advice-hr
         div(ng-show="adviceList.length > limit").col-md-12
           button.btn.btn-default(ng-click= "limit = limit + 5")= __("see more")
@@ -187,7 +189,14 @@ block content
                   div.val-error(ng-show="adviceForm.adviceContent.$error.required")= __("advice val")
             div.form-group.col-xs-12.col-sm-12.mb
               div.col-xs-12.col-sm-8.col-md-offset-2
-                div(class="btn btn-default" ng-file-select ng-model="files" accept=".jpg,.png") Upload ussing model $watch
+                div.drop-zone.text-center(class="" ng-file-select ng-model="files" accept=".jpg,.png,.gif" ng-file-change="generateThumb(files[0], $files)") 
+                  div.add-file(ng-hide="files.length") Add image 
+                  div.upload-preview(ng-show="files.length")
+                    img(class="img-responsive" ng-src="{{files[0].dataUrl}}")
+                  div(ng-show="progressPercentage < 100")
+                    div.progress
+                      div(class="progress-bar progress-bar-striped" style="width:{{progressPercentage}}%") {{progressPercentage}}%
+
             div.form-group.col-xs-12.col-sm-12
               div(id="advice-msg" flash-alert active-class="in alert" class="fade")
                 strong(class="alert-message") {{flash.message}}

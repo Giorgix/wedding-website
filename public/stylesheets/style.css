@@ -545,3 +545,31 @@ input.ng-valid.ng-touched {
   font-size: 18px;
 }
 
+.drop-zone {
+  border: 2px dashed #CCCCCC;
+  min-height: 100px;
+  position: relative;
+  padding: 1em;
+}
+.drop-zone .add-file {
+  margin-bottom: 0;
+  width: 50%;
+  height: 1em;
+  line-height: 1;
+  font-size: 2em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.upload-preview {
+}
+.upload-preview img, .advice-image{
+  max-height: 300px;
+  display: inline-block;
+}
+.advice-image {
+  padding-top: 1em;
+}
