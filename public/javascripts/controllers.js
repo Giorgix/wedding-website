@@ -195,8 +195,6 @@ function youtube_parser(url){
 
 weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage','flash', 
     function($scope, $http, musicStorage, flash) {
-      var videoUrl = 'https://www.youtube.com/watch?v=IBo8QwfmYSM';
-      $scope.videoID = youtube_parser(videoUrl);
       $scope.musicList = [];
       $scope.limit = 3;
       $scope.langu = 'en';
