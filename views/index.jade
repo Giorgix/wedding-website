@@ -193,7 +193,7 @@ block content
                   div.add-file(ng-hide="files.length") Add image 
                   div.upload-preview(ng-show="files.length")
                     img(class="img-responsive" ng-src="{{files[0].dataUrl}}")
-                  div(ng-show="progressPercentage < 100")
+                  div.mb(ng-show="progressPercentage < 100")
                     div.progress
                       div(class="progress-bar progress-bar-striped" style="width:{{progressPercentage}}%") {{progressPercentage}}%
 
