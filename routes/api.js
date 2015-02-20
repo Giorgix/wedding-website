@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 
 // MODELS ===================================
 var rsvps = require('.././models/rsvp.js').RsvpModel;
@@ -35,6 +36,16 @@ function createItem(model, item_json, res) {
 
 }
 
+function deleteFile(path) {
+  fs.exists(path, function(exists) {
+    if(exists == true) {
+      fs.unlink(path, function(err) {
+        if(err) throw err;
+      });
+    }
+  })
+}
+
 function removeItem(model, id, res) {
   model.findById(id, function (err, data){
     if(!data) {
@@ -49,6 +60,9 @@ function removeItem(model, id, res) {
           res.status(500);
           res.send(err);
         } else {
+          if(data.image) {
+            deleteFile('./public' + data.image);
+          }
           getData(model, res);
         }
       });
@@ -97,6 +111,19 @@ router.post('/advice', function(req, res) {
   } else {
     createItem(advice, req.body, res);
   }
+});
+
+router.put('/advice/:id', function(req, res) {
+  console.log(req.body.aproved);
+  advice.findOneAndUpdate({
+    _id: req.params.id
+  }, {aproved: req.body.aproved}, function(err, data){
+    //console.log(data);
+    if(err) {
+      res.send(err);
+    }
+    getData(advice, res);
+  });
 });
 
 router.delete('/advice/:id', isLoggedIn, function(req, res) {

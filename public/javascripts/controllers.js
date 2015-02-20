@@ -56,6 +56,7 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
                       });
       }      
 
+      
       $scope.removeRsvp = function(itemId) {
         rsvpStorage.delete(itemId)
                       .success(function(data) {
@@ -155,6 +156,18 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', '$upload', '$
                         });
         }      
       }
+      
+      $scope.saveEditedAdvice = function(advice) {
+        adviceStorage.put(advice)
+                     .success(function(data) {
+                       $scope.adviceList = data;
+                     })
+                     .error(function(data) {
+                       console.log('Error: ' + data);
+                     })
+      }
+
+
       $scope.removeAdvice = function(itemId) {
         adviceStorage.delete(itemId)
                       .success(function(data) {

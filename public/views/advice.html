@@ -9,6 +9,9 @@
   <div ng-repeat="advice in adviceList | filter:query | orderBy: '-created'">
     <h3 class="text-primary advice-name">{{advice.name}}</h5>
     <p class="text-muted advice-content">{{advice.content}}</p>
+    <img src="{{advice.image}}" class="img-responsive">
+    <label class="btn btn-success" ng-model="advice.aproved" btn-radio="true" ng-change="saveEditedAdvice(advice)"> Aprove</label>
+    <label class="btn btn-danger" ng-model="advice.aproved" btn-radio="false" ng-change="saveEditedAdvice(advice)"> Deny</label>
     <button class="btn btn-danger" ng-click="removeAdvice(advice._id)"> Delete</button>
     <hr>
   </div>

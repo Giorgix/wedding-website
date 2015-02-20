@@ -26,6 +26,10 @@ weddingAppServices.factory('adviceStorage', ['$http', function($http) {
   service.post = function(advice) {
     return $http.post('/api/advice', advice);
   }
+  
+  service.put = function(advice) {
+    return $http.put('/api/advice/' + advice._id, advice);
+  }
 
   service.delete = function(itemId) {
     return $http.delete('/api/advice/' + itemId);
