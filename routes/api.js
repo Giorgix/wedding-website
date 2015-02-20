@@ -113,7 +113,7 @@ router.post('/advice', function(req, res) {
   }
 });
 
-router.put('/advice/:id', function(req, res) {
+router.put('/advice/:id', isLoggedIn, function(req, res) {
   console.log(req.body.aproved);
   advice.findOneAndUpdate({
     _id: req.params.id
