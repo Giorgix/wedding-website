@@ -170,7 +170,7 @@ block content
           div.panel-body
             p.advice-content {{advice.content}}
             div(ng-show="advice.image")
-              img.advice-image.img-responsive(src="{{advice.image}}")
+              img.advice-image.img-responsive(ng-src="{{advice.image}}")
           hr.advice-hr
         div(ng-show="adviceList.length > limit").col-md-12
           button.btn.btn-default(ng-click= "limit = limit + 5")= __("see more")
@@ -213,11 +213,15 @@ block content
         span.section-icon.music-icon(aria-hidden="true" data-icon!="&#xe603;")
         h3= __("music info")
         div
-          div.col-md-4(ng-repeat="song in musicList | orderBy: '-created' | limitTo:limit")
+          div.col-md-12(ng-repeat="song in musicList | orderBy: '-created' | limitTo:limit")
             div.panel.panel-music
               div.panel-heading
                 h3.panel-title {{song.artist}} 
-              div.panel-body {{song.title}}
+              div.panel-body 
+                p {{song.title}}
+                div.col-md-8.col-md-offset-2(ng-show="song.videoID")
+                  div.embed-responsive.embed-responsive-16by9
+                    youtube-video(video-id="song.videoID")
               div.panel-footer 
                 small= __("recommended")
                 | {{song.name}}
@@ -241,6 +245,11 @@ block content
                   input.form-control.input-lg(type="text" placeholder=__("song title") ng-model="title" name="musicSong" required)
                   div.val-error(ng-show="musicForm.$submitted || musicForm.musicSong.$touched")
                     div(ng-show="musicForm.musicSong.$error.required")= __("song val")
+              div.form-group.col-xs-12.col-sm-12.mb
+                div.col-xs-12.col-sm-8.col-md-offset-2
+                  label= __("video label")
+                  input.form-control.input-lg(type="text" placeholder=__("video url") ng-model="videoUrl")
+
               div.form-group.col-xs-12.col-sm-12
                 div(id="music-msg" flash-alert active-class="in alert" class="fade")
                   strong(class="alert-message") {{flash.message}}

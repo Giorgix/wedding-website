@@ -50,6 +50,8 @@
   "recommended": "Recommended by ",
   "artist": "Artist",
   "song title" : "Song Title",
+  "video url": "Youtube link",
+  "video label": "Copy the youtube link for the song if you want",
   "artist val": "A song without an artist?",
   "song val": "A song without a title?",
   "contact": "contact",

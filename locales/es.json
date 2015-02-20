@@ -49,6 +49,8 @@
   "recommended": "Petición de ",
   "artist": "Artista",
   "song title" : "Canción",
+  "video url": "Enlace a youtube",
+  "video label": "Copia el enlace a la canción en youtube si quieres",
   "artist val": "¿La canción sin intérprete?",
   "song val": "¿La canción sin nombre?",
   "contact": "contacto",

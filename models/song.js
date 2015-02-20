@@ -15,6 +15,9 @@ var song = new Schema ({
     type: String,
     require: true
   },
+  videoID: {
+    type: String
+  },
   created: {
     type: Date,
     default: Date.now

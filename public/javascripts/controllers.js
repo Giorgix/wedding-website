@@ -181,11 +181,28 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', '$upload', '$
     
     }])
 
+function youtube_parser(url){
+  if(url != undefined) {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    if (match&&match[7].length==11){
+      return match[7];
+    } else {
+      alert("Url incorrecta");
+    }
+  }
+}
+
 weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage','flash', 
     function($scope, $http, musicStorage, flash) {
+      var videoUrl = 'https://www.youtube.com/watch?v=IBo8QwfmYSM';
+      $scope.videoID = youtube_parser(videoUrl);
       $scope.musicList = [];
       $scope.limit = 3;
       $scope.langu = 'en';
+      $scope.trustSrc = function(src) {
+        return $sce.trustAsResourceUrl(src);
+      }
       musicStorage.get()
                     .success(function(data) {
                       $scope.musicList = data;
@@ -205,6 +222,7 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
           name: $scope.name.trim(),
           artist: $scope.artist.trim(),
           title: $scope.title.trim(),
+          videoID: youtube_parser($scope.videoUrl)
         };
         
         musicStorage.post(newSong)
@@ -212,6 +230,7 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
                         $scope.name = '';
                         $scope.artist = '';
                         $scope.title = '';
+                        $scope.videoUrl = '';
                         $scope.musicList = data;
                         if($scope.langu === 'en') {
                           flash.to('music-msg').success =  'Song requested!';
