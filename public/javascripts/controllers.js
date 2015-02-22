@@ -188,7 +188,7 @@ function youtube_parser(url){
     if (match&&match[7].length==11){
       return match[7];
     } else {
-      alert("Url incorrecta");
+      return 'URL Error';
     }
   }
 }
@@ -214,6 +214,10 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
 
       $scope.addSong = function(form) {
         if(!$scope.name || !$scope.artist || !$scope.title){
+          return;
+        }
+        if(youtube_parser($scope.videoUrl) === 'URL Error') {
+          flash.to('music-msg').error =  'URL not valid';
           return;
         }
         var newSong = {
