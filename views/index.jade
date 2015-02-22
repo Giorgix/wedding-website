@@ -193,7 +193,7 @@ block content
                   div.val-error(ng-show="adviceForm.adviceContent.$error.required")= __("advice val")
             div.form-group.col-xs-12.col-sm-12.mb
               div.col-xs-12.col-sm-8.col-md-offset-2
-                div.drop-zone.text-center(class="" ng-file-select ng-model="files" accept=".jpg,.png,.gif" ng-file-change="generateThumb(files[0], $files)") 
+                div.drop-zone.text-center(class="" ng-file-select ng-file-drop ng-model="files" accept=".jpg,.png,.gif" ng-file-change="generateThumb(files[0], $files)") 
                   div.add-file(ng-hide="files.length") Add image 
                   div.upload-preview(ng-show="files.length")
                     img(class="img-responsive" ng-src="{{files[0].dataUrl}}")
