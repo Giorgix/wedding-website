@@ -78,7 +78,11 @@ block content
         h4.subtitle= __("dress code")
         p= __("wedding dress code")
   // Map Section
-  #map
+  a.map-link(href="https://maps.google.com?daddr=Restaurante+La+Peña+Bermeja")
+    div.map-wrapper
+      #map
+      div.map-text.text-center= __("directions")
+
   section#accommodations.container-fluid.content-section.text-center
       .col-lg-8.col-lg-offset-2(data-sr="enter right move 150px over 1s")
         h2= __("accommodations")
