@@ -498,6 +498,7 @@ body {
 
 [data-icon]:before {
   font-family: icons; /* BYO icon font, mapped smartly */
+  font-family: 2em;
   content: attr(data-icon);
   line-height: 24px;
   speak: none; /* Not to be trusted, but hey. */
@@ -510,6 +511,13 @@ body {
   text-transform: uppercase;
   font-weight: 400;
   font-size: 18px;
+}
+.bg-title {
+  background-color: #47414C;
+  padding: 1em;
+}
+.light-link{
+  color: #FFF;
 }
 .date-icon, address, #about .subtitle {
   color: #2F2738;

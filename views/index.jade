@@ -77,7 +77,8 @@ block content
         hr
         h4.subtitle= __("dress code")
         h4
-          strong= __("dress code title")
+          strong.bg-title= __("dress code title")    
+            span(aria-hidden="true" data-icon!="&#xe606;")
         p= __("dress code text")
   // Map Section
   a.map-link(href="https://maps.google.com?daddr=Restaurante+La+Peña+Bermeja")
