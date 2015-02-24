@@ -68,7 +68,7 @@ block content
         address
           div.btn-link
             a(href="http://www.lapenabermeja.com")
-              div.btn.btn-default.btn-lg!= __("wedding place")
+              div.btn.btn-default.btn-lg.card!= __("wedding place")
           div= __("wedding address")
           div= __("wedding address 2")
         p= __("wedding description 1")
@@ -92,7 +92,7 @@ block content
         span.section-icon.accommodations-icon(aria-hidden="true" data-icon!="&#xe604;")
         h4= __("accommodations info")
         div.col-md-4.col-md-offset-2
-          div.panel.panel-accommodations
+          div.panel.panel-accommodations.card
             div.panel-heading
               h3.panel-title Hospederia Princesa Elima
             div.panel-body
@@ -102,7 +102,7 @@ block content
                 a(href="http://booking.com/755293ba026a6")
                   button.btn.btn-success= __("booking")
         div.col-md-4
-          div.panel.panel-accommodations
+          div.panel.panel-accommodations.card
             div.panel-heading
               h3.panel-title Hostal El Torreon
             div.panel-body
@@ -159,9 +159,9 @@ block content
                 span(class="alert-message") {{flash.message}}
               div.col-sm-4.col-sm-offset-4
                 - if(getLocale() === 'en')
-                  button.btn.btn-success.btn-lg.btn-block(ng-click= "langu = 'en'" type="submit")= __("confirm")
+                  button.btn.btn-success.btn-lg.btn-block.card(ng-click= "langu = 'en'" type="submit")= __("confirm")
                 - if(getLocale() === 'es')
-                  button.btn.btn-success.btn-lg.btn-block(ng-click= "langu = 'es'" type="submit")= __("confirm")
+                  button.btn.btn-success.btn-lg.btn-block.card(ng-click= "langu = 'es'" type="submit")= __("confirm")
 
   // Advice Section
   section#advice.container-fluid.content-section.text-center(ng-controller="adviceCtrl")
@@ -180,7 +180,7 @@ block content
               img.advice-image.img-responsive(ng-src="{{advice.image}}")
           hr.advice-hr
         div(ng-show="adviceList.length > limit").col-md-12
-          button.btn.btn-default(ng-click= "limit = limit + 5")= __("see more")
+          button.btn.btn-default.card(ng-click= "limit = limit + 5")= __("see more")
         div.advice-form
           h4= __("advice intro")
           form(ng-submit="addAdvice(adviceForm, $files)" name="adviceForm" enctype="multipart/form-data" novalidate)
@@ -209,9 +209,9 @@ block content
                 strong(class="alert-message") {{flash.message}}
               div.col-sm-4.col-sm-offset-4
                 - if(getLocale() === 'en')
-                  button.btn.btn-info.btn-lg.btn-block(ng-click= "langu = 'en'" type="submit")= __("send")
+                  button.btn.btn-info.btn-lg.btn-block.card(ng-click= "langu = 'en'" type="submit")= __("send")
                 - if(getLocale() === 'es')
-                  button.btn.btn-info.btn-lg.btn-block(ng-click= "langu = 'es'" type="submit")= __("send")
+                  button.btn.btn-info.btn-lg.btn-block.card(ng-click= "langu = 'es'" type="submit")= __("send")
 
 
   section#music.container-fluid.content-section.text-center(ng-controller="musicCtrl")
@@ -221,7 +221,7 @@ block content
         h3= __("music info")
         div
           div.col-md-12(ng-repeat="song in musicList | orderBy: '-created' | limitTo:limit")
-            div.panel.panel-music
+            div.panel.panel-music.card
               div.panel-heading
                 h3.panel-title {{song.artist}} 
               div.panel-body 
@@ -233,7 +233,7 @@ block content
                 small= __("recommended")
                 | {{song.name}}
           div(ng-show="musicList.length > limit").col-md-12
-            button.btn.btn-default(ng-click= "limit = limit + 3")= __("see more")
+            button.btn.btn-default.card(ng-click= "limit = limit + 3")= __("see more")
         div.advice-form.col-md-12
             h4= __("request a song")
             form(ng-submit="addSong(musicForm)" name="musicForm" novalidate)
@@ -262,9 +262,9 @@ block content
                   strong(class="alert-message") {{flash.message}}
                 div.col-sm-4.col-sm-offset-4
                   - if(getLocale() === 'en')
-                    button.btn.btn-primary.btn-lg.btn-block(ng-click= "langu = 'en'" type="submit")= __("send")
+                    button.btn.btn-primary.btn-lg.btn-block.card(ng-click= "langu = 'en'" type="submit")= __("send")
                   - if(getLocale() === 'es')
-                    button.btn.btn-primary.btn-lg.btn-block(ng-click= "langu = 'es'" type="submit")= __("send")
+                    button.btn.btn-primary.btn-lg.btn-block.card(ng-click= "langu = 'es'" type="submit")= __("send")
 
 
 
@@ -282,7 +282,7 @@ block content
         ul.list-inline.banner-social-buttons
           li
 
-            a.btn.btn-default.btn-lg(href='tel:620374968')
+            a.btn.btn-default.btn-lg.card(href='tel:620374968')
               i.fa.fa-phone.fa-fw
               |  
               span.network-name 620374968

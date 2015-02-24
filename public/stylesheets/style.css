@@ -23,6 +23,10 @@ html {
 .inline {
   display: inline-block;
 }
+.card {
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
 address {
   font-size: 18px;
 }
@@ -562,6 +566,9 @@ body {
 
 .btn-link {
   margin-bottom: 35px;
+}
+.panel-music {
+  border: 0;
 }
 .panel-music .panel-heading {
   background-color: #8C96AD;
