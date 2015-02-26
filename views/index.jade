@@ -271,19 +271,20 @@ block content
 
   // Contact Section
   section#contact.intro.container-fluid.content-section.text-center
-      .col-lg-8.col-lg-offset-2(data-sr="scale down 20% over 1.5s")
-        h2= __("contact title")
-        h4= __("contact text")
-        - if(getLocale() === 'en')
-          p
-            a(href='mailto:wedding@jamieandjorge.com') wedding@jamieandjorge.com
-        - if(getLocale() === 'es')
-          p
-            a(href='mailto:boda@jamieandjorge.com') boda@jamieandjorge.com
-        ul.list-inline.banner-social-buttons
-          li
+      .intro-body
+        .col-lg-8.col-lg-offset-2(data-sr="scale down 20% over 1.5s")
+          h2= __("contact title")
+          h4= __("contact text")
+          - if(getLocale() === 'en')
+            p
+              a(href='mailto:wedding@jamieandjorge.com') wedding@jamieandjorge.com
+          - if(getLocale() === 'es')
+            p
+              a(href='mailto:boda@jamieandjorge.com') boda@jamieandjorge.com
+          ul.list-inline.banner-social-buttons
+            li
 
-            a.btn.btn-default.btn-lg.card(href='tel:620374968')
-              i.fa.fa-phone.fa-fw
-              |  
-              span.network-name 620374968
+              a.btn.btn-default.btn-lg.card(href='tel:620374968')
+                i.fa.fa-phone.fa-fw
+                |  
+                span.network-name 620374968
