@@ -92,24 +92,24 @@ block content
         span.section-icon.accommodations-icon(aria-hidden="true" data-icon!="&#xe604;")
         h4= __("accommodations info")
         div.col-md-4.col-md-offset-2
-          div.panel.panel-accommodations.card
-            div.panel-heading
-              h3.panel-title Hospederia Princesa Elima
-            div.panel-body
-              div.mb
-                img.img-responsive(src="images/hospederia.jpg")
-              div.mb
-                a(href="http://booking.com/755293ba026a6")
+          a(href="http://booking.com/755293ba026a6")
+            div.panel.panel-accommodations.card
+              div.panel-heading
+                h3.panel-title Hospederia Princesa Elima
+              div.panel-body
+                div.mb
+                  img.img-responsive(src="images/hospederia.jpg")
+                div.mb
                   button.btn.btn-success= __("booking")
         div.col-md-4
-          div.panel.panel-accommodations.card
-            div.panel-heading
-              h3.panel-title Hostal El Torreon
-            div.panel-body
-              div.mb
-                img.img-responsive(src="images/hostal.jpg")
-              div.mb
-                a(href="tel:949280300")
+          a(href="tel:949280300")
+            div.panel.panel-accommodations.card
+              div.panel-heading
+                h3.panel-title Hostal El Torreon
+              div.panel-body
+                div.mb
+                  img.img-responsive(src="images/hostal.jpg")
+                div.mb
                   button.btn.btn-success 949 28 03 00
 
 
@@ -120,7 +120,8 @@ block content
           span.section-icon.rsvp-icon(aria-hidden="true" data-icon!="&#xe602;")
           - if(getLocale() === 'en')
             p= __("rsvp ad")
-          h4!= __("rsvp comment")
+          h4
+            strong!= __("rsvp comment")
           h3!= __("rsvp request")
           form(novalidate accessibleForm ng-submit="addRsvp(rsvpForm)" name="rsvpForm")
             div.form-group.col-xs-12.col-sm-12
@@ -269,7 +270,7 @@ block content
 
 
   // Contact Section
-  section#contact.container-fluid.content-section.text-center
+  section#contact.intro.container-fluid.content-section.text-center
       .col-lg-8.col-lg-offset-2(data-sr="scale down 20% over 1.5s")
         h2= __("contact title")
         h4= __("contact text")

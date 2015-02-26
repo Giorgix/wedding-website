@@ -22,8 +22,16 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
 
 
       $scope.addRsvp = function(form) {
-        console.log($scope.assistChoice);
+        console.log($scope.sleepPrefChoice);
         if(!$scope.firstName || !$scope.lastName || !$scope.email || $scope.assistChoice === undefined){
+          return;
+        }
+        if($scope.sleepPrefChoice === undefined) {
+          if($scope.langu === 'en') {
+            flash.to('rsvp-msg').error =  "Are you not sleeping anywhere that night?";
+          } else {
+            flash.to('rsvp-msg').error =  "¿No duermes en ningun sitio esa noche?";
+          }
           return;
         }
         var newRsvp = {

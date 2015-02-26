@@ -483,6 +483,7 @@ body {
   background-color: #DCE0EA;
 }
 #contact {
+  background: url(/images/mad-ny.jpg) no-repeat bottom center scroll;
   background-color: #454545;
   color: #FFF;
 }
@@ -540,7 +541,7 @@ body {
   color: #2A4948;
 }
 #rsvp h4 {
-  color: #101E1E;
+  color: #254242;
 }
 .advice-image {
   margin-bottom: 35px;
@@ -588,6 +589,9 @@ input.ng-invalid.ng-touched {
 }
 input.ng-valid.ng-touched {
   border: 2px solid green;
+}
+.alert-message {
+  font-size: 150%;
 }
 .val-error {
   font-size: 18px;
