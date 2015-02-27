@@ -166,7 +166,7 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', '$upload', '$
       }
       
       $scope.saveEditedAdvice = function(advice) {
-        adviceStorage.put(advice)
+        adviceStorage.patch(advice)
                      .success(function(data) {
                        $scope.adviceList = data;
                      })

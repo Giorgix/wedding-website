@@ -113,7 +113,7 @@ router.post('/advice', function(req, res) {
   }
 });
 
-router.put('/advice/:id', isLoggedIn, function(req, res) {
+router.patch('/advice/:id', isLoggedIn, function(req, res) {
   console.log(req.body.aproved);
   advice.findOneAndUpdate({
     _id: req.params.id
@@ -125,6 +125,10 @@ router.put('/advice/:id', isLoggedIn, function(req, res) {
     getData(advice, res);
   });
 });
+
+/*router.patch('/advice/:id', function(res, res){
+
+});*/
 
 router.delete('/advice/:id', isLoggedIn, function(req, res) {
   removeItem(advice, req.params.id, res);
