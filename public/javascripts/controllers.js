@@ -7,12 +7,12 @@ weddingAppControllers.controller('collapseCtrl', function($scope) {
 weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','flash', 
     function($scope, $http, rsvpStorage, flash) {
       $scope.rsvps = [];
-      $scope.sortField = 'lastName';
+      $scope.sortField = '';
       $scope.langu = '';
       $scope.reverse = false;
       rsvpStorage.get()
                     .success(function(data) {
-                      $scope.rsvps = data;
+                      $scope.rsvps = data.slice().reverse();
                     
                     })
                     .error(function(data) {
