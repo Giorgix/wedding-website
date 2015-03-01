@@ -12,9 +12,7 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
       $scope.reverse = false;
       rsvpStorage.get()
                     .success(function(data) {
-                      console.log(data);
-                      console.log(data.reverse());
-                      $scope.rsvps = data;
+                      $scope.rsvps = data.reverse();
                     
                     })
                     .error(function(data) {
