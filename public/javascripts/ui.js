@@ -180,7 +180,7 @@ function init() {
 var config = {
   mobile: true,
   //reset: true,
-  vFactor: 0.30
+  vFactor: 0.10
 }
 
 window.sr = new scrollReveal(config);
