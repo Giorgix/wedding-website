@@ -595,6 +595,9 @@ input.ng-invalid.ng-touched {
 input.ng-valid.ng-touched {
   border: 2px solid green;
 }
+textarea {
+  min-height: 200px;
+}
 .alert-message {
   font-size: 150%;
 }

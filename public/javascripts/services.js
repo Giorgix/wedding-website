@@ -2,7 +2,7 @@ var weddingAppServices = angular.module('weddingAppServices', []);
 
 weddingAppServices.factory('rsvpStorage', ['$http', function($http) {
   var service = {};
-  service.get = function() {
+  service.get = function(field) {
     return $http.get('/api/rsvps');
   }
   
@@ -52,5 +52,20 @@ weddingAppServices.factory('musicStorage', ['$http', function($http) {
     return $http.delete('/api/song/' + itemId);
   }
   
+  return service;
+}]);
+
+weddingAppServices.factory('emailService', ['$http', function($http) {
+  var service = {};
+  //This should get the emails and act like a email client
+  /*service.get = function() {
+    return $http.get('/api/songs');
+  }*/
+  
+  service.post = function(email) {
+    console.log('post email');
+    return $http.post('/admin/email', email);
+  }
+
   return service;
 }]);

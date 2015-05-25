@@ -1,4 +1,3 @@
-<div class="well">
   <div class="form-group">
     <div class="input-group">
       <div class="input-group-addon"> Filter</div>
@@ -6,9 +5,14 @@
     </div>
   </div>
   <h4 class="text-muted"> TOTAL: {{filtered.length}}</h4>
+  <h4 class="text-muted"> ASISTEN: {{getTotalAssist()}}</h4>
+  <h4 class="text-muted"> NO ASISTEN: {{getTotalNoAssist()}}</h4>
+  <button class="btn btn-success" ng-click="emailDialog()"> Send Email</button>
+  <hr />
   <div class="table-responsive">
     <table class="table table-striped">
       <tr class="text-muted">
+        <th> Selected</th>
         <th><a href="" ng-click="sortField = 'firstName' ; reverse = !reverse"> First Name</a></th>
         <th><a href="" ng-click="sortField = 'lastName' ; reverse = !reverse"> Last Name</a></th>
         <th> Email</th>
@@ -16,6 +20,7 @@
         <th><a href="" ng-click="sortField = 'sleepPref' ; reverse = !reverse">Sleep Pref</a></th>
       </tr>
       <tr class="text-muted" ng-repeat="rsvp in filtered = (rsvps | filter:query | orderBy:sortField:reverse) track by $index">
+        <td><input type="checkbox" ng-click="addRecipient(rsvp.email)"></td>
         <td> {{rsvp.firstName}}</td>
         <td> {{rsvp.lastName}}</td>
         <td> {{rsvp.email}}</td>
@@ -27,3 +32,38 @@
     </table>
   </div>
 </div>
+<script type="text/ng-template" id="emailDialog">
+  <div class="ngdialog-message">
+    <h3>Send Email</h3>
+  </div>
+  <div class="ngdialog-buttons">
+    <form novalidate="novalidate" accessibleForm="accessibleForm" ng-submit="sendEmail(emailForm)" name="emailForm">
+      <div class="form-group col-xs-12 col-sm-12">
+        <div class="col-xs-12 col-sm-12">
+          <input type="text" placeholder="Subject" name="emailSubject" ng-model="subject" required="required" class="form-control input-lg"/>
+          <div ng-show="emailForm.$submitted || emailForm.emailSubject.$touched">
+            <div ng-show="emailForm.emailSubject.$error.required" class="val-error">
+              Please write a subject
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-xs-12 col-sm-12">
+        <div class="col-xs-12 col-sm-12">
+          <textarea placeholder="What you wanna say?" name="emailText" ng-model="email" required="required" class="form-control input-lg"></textarea>
+          <div ng-show="emailForm.$submitted || emailForm.emailText.$touched">
+            <div ng-show="emailForm.emailText.$error.required" class="val-error">
+              Please write the email!
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-xs-12 col-sm-12">
+        <div id="email-msg" flash-alert="flash-alert" active-class="in alert" class="fade"><span class="alert-message">{{flash.message}}</span></div>
+        <div class="col-sm-4 col-sm-offset-4">
+          <button type="submit" class="btn btn-success btn-lg btn-block card">Send</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</script>

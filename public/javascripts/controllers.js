@@ -1,15 +1,26 @@
+//TODO 
+// Add action bar when rsvp items selected(send email, mark as paid, amount..)
+
 var weddingAppControllers = angular.module('weddingAppControllers', ['ui.bootstrap']);
 
 weddingAppControllers.controller('collapseCtrl', function($scope) {
   $scope.isCollapsed = true;
 })
 
-weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','flash', 
-    function($scope, $http, rsvpStorage, flash) {
+weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage', 'emailService', 'flash', 'ngDialog', 
+    function($scope, $http, rsvpStorage, emailService, flash, ngDialog) {
       $scope.rsvps = [];
+      $scope.guestMails = [];
       $scope.sortField = '';
       $scope.langu = '';
       $scope.reverse = false;
+      $scope.emailDialog = function() {
+        ngDialog.open({
+          template: 'views/email.html',
+          scope: $scope,
+          className: 'ngdialog-theme-default ngdialog-theme-plain'
+        });
+      }
       rsvpStorage.get()
                     .success(function(data) {
                       $scope.rsvps = data.reverse();
@@ -20,7 +31,62 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage','
                       console.log('Error: ' + data);
                     });
 
+      $scope.getTotalAssist = function() {
+        var total = 0;
+        for(var i = 0; i < $scope.rsvps.length; i++){
+          if($scope.rsvps[i].assist == true) total += 1;
+        }
+        return total; 
+      }
+      
+      $scope.getTotalNoAssist = function() {
+        var total = 0;
+        for(var i = 0; i < $scope.rsvps.length; i++){
+          if($scope.rsvps[i].assist == false) total += 1;
+        }
+        return total; 
+      }
 
+    $scope.addRecipient = function(email) {
+        console.log($scope.guestMails.indexOf(email));
+        if($scope.guestMails.indexOf(email) === -1) {
+          $scope.guestMails.push(email);
+        }
+        else {
+        var index = $scope.guestMails.indexOf(email);
+          $scope.guestMails.splice(index, 1);
+        }
+        console.log($scope.guestMails);
+        
+    }
+    $scope.sendEmail = function(form) {
+        console.log($scope.guestMails);
+        var subject = form.emailSubject.$modelValue;
+        var email = form.emailText.$modelValue;
+        if(!subject || !email || !$scope.guestMails){
+          return;
+        }
+        var newEmail = {
+          guests: $scope.guestMails,
+          subject: subject.trim(),
+          text: email.trim()
+        };
+        
+        emailService.post(newEmail)
+                      .success(function(data) {
+                        $scope.emailSubject = '';
+                        $scope.emailText = '';
+                        flash.to('email-msg').success =  'Email Sent!';
+                        form.$setPristine();
+                        form.$setUntouched();
+                      })
+                      .error(function(data) {
+                        flash('danger', 'Error: ' + data);
+                        flash.to('email-msg').error =  'Error: ' + data;
+                        console.log('Error: ' + data);
+                      });
+      }   
+      
       $scope.addRsvp = function(form) {
         console.log($scope.sleepPrefChoice);
         if(!$scope.firstName || !$scope.lastName || !$scope.email || $scope.assistChoice === undefined){
@@ -269,4 +335,3 @@ weddingAppControllers.controller('musicCtrl', ['$scope', '$http', 'musicStorage'
       }
     
 }])
-
