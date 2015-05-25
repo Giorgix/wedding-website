@@ -9,6 +9,7 @@ var multer = require('multer');
 var methodOverride = require('method-override');
 var i18n = require('i18n');
 var mongoose = require('mongoose');
+var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 
 var configDB = require('./config/db.js');
@@ -61,7 +62,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(i18n.init);
 
 app.use(session({
+  store: new MongoStore({url: dbURL}),
   secret: 'ASDASDASLDKJ2309823450972$%^$%asdasd',
+  cookie: {
+    maxAge: 100*60*60
+  },
+  rolling: true,
   resave: false,
   saveUninitialized: true
 }));
