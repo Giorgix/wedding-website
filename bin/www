@@ -10,5 +10,8 @@ var options = {
 
 app.set('port', process.env.PORT || 3000);
 
+var httpServer = http.createServer(app);
+httpServer.listen(3300);
+
 https.createServer(options, app).listen(app.get('port'));
 console.log("Express server listening on port %d", app.get('port'));
