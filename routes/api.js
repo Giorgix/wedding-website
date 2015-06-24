@@ -6,6 +6,7 @@ var fs = require('fs');
 var rsvps = require('.././models/rsvp.js').RsvpModel;
 var advice = require('.././models/advice.js').AdviceModel;
 var song = require('.././models/song.js').SongModel;
+var Album = require('.././models/album.js').AlbumModel;
 
 function getData(model, res) {
   model.find(function(err, data) {
@@ -90,6 +91,48 @@ router.post('/rsvps', function(req, res) {
 router.delete('/rsvps/:id', isLoggedIn, function(req, res) {
   removeItem(rsvps, req.params.id, res);
 })
+
+
+
+// ALBUM ===================================
+router.get('/album', function(req, res) {
+  getData(Album, res);
+});
+
+router.post('/album', function(req, res) {
+  if(req.files) {
+    var image = {
+      url: '/uploads/' + req.files.file.name
+    }
+    Album.findOne({'title': req.body.title}, function(err, albumFound) {
+      if(err || albumFound) {
+        if(!err) {
+          //console.log(albumFound);
+          albumFound.images.addToSet(image);
+          albumFound.save(function(err) {
+            if(err) res.send(err);
+            //console.log('updated!');
+            res.send(albumFound);
+          });
+        } 
+        else {
+          res.send(err);
+        }
+      }
+      else {
+        var newAlbum = new Album({
+          title: req.body.title
+        });
+        newAlbum.images.addToSet(image);
+        newAlbum.save(function(err) {
+          if(err) res.send(err);
+          //console.log('saved!');
+          res.send(newAlbum);
+        });
+      }
+    });
+  }
+});
 
 
 

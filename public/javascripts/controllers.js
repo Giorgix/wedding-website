@@ -1,8 +1,52 @@
 //TODO 
 // Add action bar when rsvp items selected(send email, mark as paid, amount..)
 
-var weddingAppControllers = angular.module('weddingAppControllers', ['ui.bootstrap']);
+var weddingAppControllers = angular.module('weddingAppControllers', ['ui.bootstrap', 'angularFileUpload']);
 
+weddingAppControllers.directive('ngThumb', ['$window', function($window) {
+        var helper = {
+            support: !!($window.FileReader && $window.CanvasRenderingContext2D),
+            isFile: function(item) {
+                return angular.isObject(item) && item instanceof $window.File;
+            },
+            isImage: function(file) {
+                var type =  '|' + file.type.slice(file.type.lastIndexOf('/') + 1) + '|';
+                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+            }
+        };
+
+        return {
+            restrict: 'A',
+            template: '<canvas/>',
+            link: function(scope, element, attributes) {
+                if (!helper.support) return;
+
+                var params = scope.$eval(attributes.ngThumb);
+
+                if (!helper.isFile(params.file)) return;
+                if (!helper.isImage(params.file)) return;
+
+                var canvas = element.find('canvas');
+                var reader = new FileReader();
+
+                reader.onload = onLoadFile;
+                reader.readAsDataURL(params.file);
+
+                function onLoadFile(event) {
+                    var img = new Image();
+                    img.onload = onLoadImage;
+                    img.src = event.target.result;
+                }
+
+                function onLoadImage() {
+                    var width = params.width || this.width / this.height * params.height;
+                    var height = params.height || this.height / this.width * params.width;
+                    canvas.attr({ width: width, height: height });
+                    canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
+                }
+            }
+        };
+    }]);
 weddingAppControllers.controller('collapseCtrl', function($scope) {
   $scope.isCollapsed = true;
 })
@@ -144,8 +188,106 @@ weddingAppControllers.controller('rsvpCtrl', ['$scope', '$http', 'rsvpStorage', 
     
     }])
 
-weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', '$upload', '$timeout', 'adviceStorage','flash', 
-    function($scope, $http, $upload, $timeout, adviceStorage, flash) {
+weddingAppControllers.controller('albumCtrl', ['$scope', '$http', 'FileUploader', '$timeout', 'albumStorage','flash', 
+    function($scope, $http, FileUploader, $timeout, albumStorage, flash) {
+      $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
+      $scope.albumList = [];
+      var uploader = $scope.uploader = new FileUploader({
+        url: '/api/album'
+      });
+      $scope.limit = 3;
+      $scope.langu = '';
+      $scope.orderField = 'created.ISODate';
+      albumStorage.get()
+                    .success(function(data) {
+                      $scope.albumList = data;
+                    
+                    })
+                    .error(function(data) {
+                      $scope.error = 'Error: ' + data;
+                      console.log('Error: ' + data);
+                    });
+     
+      $scope.generateThumb = function(file) {
+        if (file != null) {
+          if ($scope.fileReaderSupported && file.type.indexOf('image') > -1) {
+            $timeout(function() {
+              var fileReader = new FileReader();
+              fileReader.readAsDataURL(file);
+              fileReader.onload = function(e) {
+                $timeout(function() {
+                  file.dataUrl = e.target.result;
+                });
+              }
+            });
+          }
+        }
+      }
+ 
+      $scope.addAlbum = function(form) {
+        if(!$scope.title){
+          return;
+        }
+          uploader.onBeforeUploadItem = function(item) { 
+            var fields = {
+              title: $scope.title.trim()
+            }
+            item.formData.push(fields);
+          }
+          uploader.uploadAll();
+          uploader.onSuccessItem = function(fileItem, response, status, headers) {
+            //console.info('onSuccessIteddum', fileItem, response, status, headers);
+          };
+          uploader.onCompleteAll = function() {
+            //console.log('all done!');
+            if($scope.langu === 'en') {
+                flash.to('album-msg').success =  'Pictures uploaded!';
+              } else {
+                flash.to('album-msg').success =  'Fotos subidas!';
+              }
+              albumStorage.get()
+                .success(function(data) {
+                  $scope.albumList = data;
+                  })
+                .error(function(data) {
+                  $scope.error = 'Error: ' + data;
+                  console.log('Error: ' + data);
+                  });
+ 
+            uploader.clearQueue();
+          }
+              form.$setPristine();
+              form.$setUntouched();
+
+      }
+      
+      $scope.saveEditedAdvice = function(advice) {
+        adviceStorage.patch(advice)
+                     .success(function(data) {
+                       $scope.adviceList = data;
+                     })
+                     .error(function(data) {
+                       console.log('Error: ' + data);
+                     })
+      }
+
+
+      $scope.removeAdvice = function(itemId) {
+        adviceStorage.delete(itemId)
+                      .success(function(data) {
+                        $scope.adviceList = data;
+                      })
+                      .error(function(data) {
+                        flash('danger', 'Error: ' + data);
+                        console.log('Error: ' + data);
+                      });        
+      }
+    
+    }])
+
+
+weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', '$timeout', 'adviceStorage','flash', 
+    function($scope, $http, $timeout, adviceStorage, flash) {
       $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
       $scope.adviceList = [];
       $scope.limit = 3;

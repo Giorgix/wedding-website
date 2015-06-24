@@ -17,6 +17,28 @@ weddingAppServices.factory('rsvpStorage', ['$http', function($http) {
   return service;
 }]);
 
+weddingAppServices.factory('albumStorage', ['$http', function($http) {
+  var service = {};
+  service.get = function() {
+    return $http.get('/api/album');
+  }
+  
+  service.post = function(album) {
+    return $http.post('/api/album', album);
+  }
+  
+  service.patch = function(album) {
+    return $http.patch('/api/album/' + album._id, album);
+  }
+
+  service.delete = function(itemId) {
+    return $http.delete('/api/album/' + itemId);
+  }
+  
+  return service;
+}]);
+
+
 weddingAppServices.factory('adviceStorage', ['$http', function($http) {
   var service = {};
   service.get = function() {
