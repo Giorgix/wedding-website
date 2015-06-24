@@ -183,10 +183,11 @@ block content
         div.mb(ng-show="albumList.length > limit").col-md-12
           button.btn.btn-default.card(ng-click= "limit = limit + 5")= __("see more")
 
-        h3 Upload wedding pictures!
+        h3 Upload pictures from the wedding!
         form(ng-submit="addAlbum(albumForm)" name="albumForm" enctype="multipart/form-data" novalidate)
-          input.form-control.input-lg(type="text" placeholder=__("name") name="albumTitle" ng-model="title" required)
-          div(class="well my-drop-zone" nv-file-drop uploader="uploader") drop zone
+          input.mb.form-control.input-lg(type="text" placeholder=__("name") name="albumTitle" ng-model="title" required)
+          div(class="well drop-zone" nv-file-drop uploader="uploader") 
+            div.add-file DROP PICTURES HERE
           input.mb(type="file" nv-file-select multiple uploader="uploader")
           div.mb(ng-repeat="item in uploader.queue")
               span(ng-bind="item.file.name")
