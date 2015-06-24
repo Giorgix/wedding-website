@@ -180,24 +180,28 @@ block content
             div(ng-repeat="image in album.images")
               img.advice-image.img-responsive(ng-src="{{image.url}}")
           hr.advice-hr
-        div(ng-show="albumList.length > limit").col-md-12
+        div.mb(ng-show="albumList.length > limit").col-md-12
           button.btn.btn-default.card(ng-click= "limit = limit + 5")= __("see more")
 
+        h3 Upload wedding pictures!
         form(ng-submit="addAlbum(albumForm)" name="albumForm" enctype="multipart/form-data" novalidate)
-          input.form-control.input-lg(type="text" placeholder=__("title") name="albumTitle" ng-model="title" required)
+          input.form-control.input-lg(type="text" placeholder=__("name") name="albumTitle" ng-model="title" required)
           div(class="well my-drop-zone" nv-file-drop uploader="uploader") drop zone
-          input(type="file" nv-file-select multiple uploader="uploader")
-          p
-            Queue length: {{ uploader.queue.length }}
-          ul
-            li(ng-repeat="item in uploader.queue")
+          input.mb(type="file" nv-file-select multiple uploader="uploader")
+          div.mb(ng-repeat="item in uploader.queue")
               span(ng-bind="item.file.name")
               div(ng-thumb="{ file: item._file, height: 100 }")
               div(ng-show="uploader.isHTML5" nowrap){{ item.file.size/1024/1024|number:2 }} MB
+              button(type="button" class="btn btn-danger btn-xs" ng-click="item.remove()")
+                span(class="glyphicon glyphicon-trash")
+                | Remove
+
               div(class="progress" style="margin-bottom: 0;")
                 div(class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }")
-              button(ng-click="item.upload()") upload
-          button.btn.btn-info.btn-lg.btn-block.card(type="submit")= __("add album")
+              //button(ng-click="item.upload()") upload
+          button(type="submit" class="mb btn btn-success btn-lg" ng-disabled="!uploader.getNotUploadedItems().length")
+            span(class="glyphicon glyphicon-upload")
+            |  Upload album
         div(id="album-msg" flash-alert active-class="in alert" class="fade")
           strong(class="alert-message") {{flash.message}}
 
