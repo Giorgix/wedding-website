@@ -202,9 +202,16 @@ block content
               div(class="progress" style="margin-bottom: 0;")
                 div(class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }")
               //button(ng-click="item.upload()") upload
-          button(type="submit" class="mb btn btn-success btn-lg" ng-disabled="!uploader.getNotUploadedItems().length")
+          div(ng-show="uploader.isUploading")
+            h4= __("progress")
+            div(class="progress")
+              div(class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }")
+          button(type="submit" class="mb btn btn-success btn-lg" ng-disabled="!uploader.getNotUploadedItems().length || uploader.isUploading")
             span(class="glyphicon glyphicon-upload")
             span= __("upload-button")
+        button(type="button" class="btn btn-warning btn-lg" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading")
+          span(class="glyphicon glyphicon-ban-circle") 
+          span= __("Cancel all")
         div(id="album-msg" flash-alert active-class="in alert" class="fade")
           strong(class="alert-message") {{flash.message}}
 
