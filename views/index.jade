@@ -212,9 +212,9 @@ block content
           button(type="submit" class="mb btn btn-success btn-lg" ng-disabled="!uploader.getNotUploadedItems().length || uploader.isUploading")
             span(class="glyphicon glyphicon-upload")
             span= __("upload-button")
-        button(type="button" class="btn btn-warning btn-lg" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading")
-          span(class="glyphicon glyphicon-ban-circle") 
-          span= __("Cancel all")
+          button(type="button" class="mb btn btn-warning btn-lg" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading")
+            span(class="glyphicon glyphicon-ban-circle") 
+            span= __("Cancel all")
         div(id="album-msg" flash-alert active-class="in alert" class="fade")
           strong(class="alert-message") {{flash.message}}
 
