@@ -196,6 +196,7 @@ weddingAppControllers.controller('albumCtrl', ['$scope', '$http', 'FileUploader'
         url: '/api/album'
       });
       $scope.limit = 3;
+      $scope.imgLimit = 5;
       $scope.langu = '';
       $scope.orderField = 'created.ISODate';
       albumStorage.get()

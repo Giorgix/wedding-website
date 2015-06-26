@@ -178,12 +178,15 @@ block content
               small at {{album.created | date:'dd-MM-yyyy HH:mm:ss'}}
           div.panel-body
             div(ng-show="advice.image")
-            div(ng-repeat="image in album.images")
+            div(ng-repeat="image in album.images | limitTo:imgLimit")
               a(href="{{image.url}}")
                 img.advice-image.img-responsive(ng-src="{{image.urlThumb}}")
+            div.mb(ng-show="album.images.length > imgLimit").col-md-12
+              button.btn.btn-default.card(ng-click= "imgLimit = imgLimit + 5")= __("see more img")
+
           hr.advice-hr
         div.mb(ng-show="albumList.length > limit").col-md-12
-          button.btn.btn-default.card(ng-click= "limit = limit + 5")= __("see more")
+          button.btn.btn-default.card(ng-click= "limit = limit + 5")= __("see more album")
 
         h3= __("album-upload")
         form(ng-submit="addAlbum(albumForm)" name="albumForm" enctype="multipart/form-data" novalidate)
