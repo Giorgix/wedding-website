@@ -158,7 +158,7 @@ a:focus {
 }
 
 .navbar-custom a {
-    color: #333;
+    color: #FFF;
 }
 
 .navbar-custom .nav li.active {
@@ -210,7 +210,7 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(/images/lavanda.jpg) no-repeat top center scroll;
+    background: url(/images/bg.jpg) no-repeat top center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
