@@ -19,6 +19,11 @@ var imageSchema = new Schema({
     type: String,
     require: true,
     unique: true
+  },
+  urlThumb: {
+    type: String,
+    require: true,
+    unique: true
   }
 });
 

@@ -64,12 +64,15 @@ h4 {
 .panel-footer small{
   color: #8E8E8E;
 }
-.advice-name {
+.advice-name, .album-name {
   color: #3A3A3A;
   font-family: 'Lato',"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .advice-name small {
   color: #BCBCBC;
+}
+.album-name small {
+  color: #939393;
 }
 #advice hr {
   display: block; 

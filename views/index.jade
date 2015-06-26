@@ -170,15 +170,17 @@ block content
   section#album.container-fluid.content-section.text-center(ng-controller="albumCtrl")
       .col-lg-8.col-lg-offset-2(data-sr="enter bottom and scale up 30% over 1.5s")
         h2 album
+        h3 Click the images to see the original file
         div(ng-repeat="album in albumList | orderBy: '-created' | limitTo:limit")
           div.panel-heading
-            h3.panel-title.advice-name 
+            h3.panel-title.album-name 
               strong {{album.title}} 
               small at {{album.created | date:'dd-MM-yyyy HH:mm:ss'}}
           div.panel-body
             div(ng-show="advice.image")
             div(ng-repeat="image in album.images")
-              img.advice-image.img-responsive(ng-src="{{image.url}}")
+              a(href="{{image.url}}")
+                img.advice-image.img-responsive(ng-src="{{image.urlThumb}}")
           hr.advice-hr
         div.mb(ng-show="albumList.length > limit").col-md-12
           button.btn.btn-default.card(ng-click= "limit = limit + 5")= __("see more")

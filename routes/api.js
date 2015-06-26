@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var gm = require('gm');
+var path = require('path');
 
 // MODELS ===================================
 var rsvps = require('.././models/rsvp.js').RsvpModel;
@@ -99,15 +101,40 @@ router.get('/album', function(req, res) {
   getData(Album, res);
 });
 
+function resize(files) {
+  var extension = path.extname(files.file.name);
+  var filename = path.basename(files.file.path, extension);
+  var imageFile = gm(files.file.path).options({imageMagick: true})
+  imageFile.identify(function(err, val) {
+    if(val.size.width > 1000 || val.size.height > 600) {
+      var resizeVal;
+      if(val.size.width > val.size.height) resizeVal = [1000, null];
+      else resizeVal = [null, 600]; 
+      console.log(resizeVal);
+      imageFile.resize(resizeVal[0], resizeVal[1])
+      .write('public/uploads/' + filename + '-small' + extension, function(err) {
+        if(err) console.log(err); 
+        else {
+          console.log('resized');
+        }
+      });
+
+    }
+  })
+}
+
 router.post('/album', function(req, res) {
   if(req.files) {
+    var extension = path.extname(req.files.file.name);
+    var filename = path.basename(req.files.file.path, extension);
     var image = {
-      url: '/uploads/' + req.files.file.name
+      url: '/uploads/' + req.files.file.name,
+      urlThumb: '/uploads/' + filename + '-small' + extension
     }
     Album.findOne({'title': req.body.title}, function(err, albumFound) {
       if(err || albumFound) {
         if(!err) {
-          //console.log(albumFound);
+          resize(req.files);
           albumFound.images.addToSet(image);
           albumFound.save(function(err) {
             if(err) res.send(err);
@@ -123,6 +150,7 @@ router.post('/album', function(req, res) {
         var newAlbum = new Album({
           title: req.body.title
         });
+        resize(req.files);
         newAlbum.images.addToSet(image);
         newAlbum.save(function(err) {
           if(err) res.send(err);
