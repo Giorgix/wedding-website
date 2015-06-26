@@ -630,7 +630,7 @@ textarea {
 .upload-preview {
 }
 .upload-preview img, .advice-image{
-  max-height: 300px;
+  /*max-height: 300px;*/
   display: inline-block;
 }
 .advice-image {

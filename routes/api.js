@@ -120,6 +120,12 @@ function resize(files) {
       });
 
     }
+    else {
+      imageFile.write('public/uploads/' + filename + '-small' + extension, function(err) {
+        if(err) console.log(err)
+        else console.log('resized');
+      });
+    }
   })
 }
 

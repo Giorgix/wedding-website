@@ -179,7 +179,7 @@ block content
           div.panel-body
             div(ng-show="advice.image")
             div(ng-repeat="image in album.images | limitTo:imgLimit")
-              a(href="{{image.url}}")
+              a(href="{{image.url}}" target="_blank")
                 img.advice-image.img-responsive(ng-src="{{image.urlThumb}}")
             div.mb(ng-show="album.images.length > imgLimit").col-md-12
               button.btn.btn-default.card(ng-click= "imgLimit = imgLimit + 5")= __("see more img")
