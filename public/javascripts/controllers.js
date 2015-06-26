@@ -286,13 +286,18 @@ weddingAppControllers.controller('albumCtrl', ['$scope', '$http', 'FileUploader'
     }])
 
 
-weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', '$timeout', 'adviceStorage','flash', 
-    function($scope, $http, $timeout, adviceStorage, flash) {
+weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', 'FileUploader', '$timeout', 'adviceStorage','flash', 
+    function($scope, $http, FileUploader, $timeout, adviceStorage, flash) {
       $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
       $scope.adviceList = [];
       $scope.limit = 3;
       $scope.langu = '';
       $scope.orderField = 'created.ISODate';
+      var uploader = $scope.uploader = new FileUploader({
+        url: '/api/advice',
+        queueLimit: 1
+      });
+
       adviceStorage.get()
                     .success(function(data) {
                       $scope.adviceList = data;
@@ -302,53 +307,45 @@ weddingAppControllers.controller('adviceCtrl', ['$scope', '$http', '$timeout', '
                       $scope.error = 'Error: ' + data;
                       console.log('Error: ' + data);
                     });
-     
-      $scope.generateThumb = function(file) {
-        if (file != null) {
-          if ($scope.fileReaderSupported && file.type.indexOf('image') > -1) {
-            $timeout(function() {
-              var fileReader = new FileReader();
-              fileReader.readAsDataURL(file);
-              fileReader.onload = function(e) {
-                $timeout(function() {
-                  file.dataUrl = e.target.result;
-                });
-              }
-            });
-          }
-        }
-      }
- 
-      $scope.addAdvice = function(form, files) {
-        if(!$scope.name || !$scope.content){
+      $scope.addAdvice = function(form) {
+      if(!$scope.name || !$scope.content){
           return;
         }
-
-        if($scope.files && $scope.files.length) {
-          $upload.upload({
-            url: '/api/advice',
-            file: $scope.files[0],
-            fields: {
-               name: $scope.name.trim(),
-               content: $scope.content.trim(),
+        console.log(uploader.getNotUploadedItems());
+        if(uploader.getNotUploadedItems().length > 0) {
+          console.log('with image');
+        uploader.onBeforeUploadItem = function(item) { 
+            var fields = {
+              name: $scope.name.trim(),
+              content: $scope.content.trim()
             }
-          }).progress(function(evt) {
-              $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total); 
-          }).success(function(data) {
-              $scope.name = '';
-              $scope.content = '';
-              $scope.adviceList = data;
-              $scope.files = {};
-              if($scope.langu === 'en') {
+            item.formData.push(fields);
+          }
+          uploader.uploadAll();
+          uploader.onSuccessItem = function(fileItem, response, status, headers) {
+            //console.info('onSuccessIteddum', fileItem, response, status, headers);
+          };
+          uploader.onCompleteAll = function() {
+            //console.log('all done!');
+            if($scope.langu === 'en') {
                 flash.to('advice-msg').success =  'Advice sent!';
               } else {
                 flash.to('advice-msg').success =  'Consejo mandado!';
               }
-              form.$setPristine();
-              form.$setUntouched();
-            });
+              adviceStorage.get()
+                .success(function(data) {
+                  $scope.adviceList = data;
+                  })
+                .error(function(data) {
+                  $scope.error = 'Error: ' + data;
+                  console.log('Error: ' + data);
+                  });
+ 
+            uploader.clearQueue();
+          }
 
         } else {
+          console.log('without image');
           var newAdvice = {
             name: $scope.name.trim(),
             content: $scope.content.trim()

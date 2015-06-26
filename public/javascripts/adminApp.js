@@ -3,7 +3,6 @@ var weddingApp = angular.module('weddingApp', [
   'angular-flash.service', 
   'angular-flash.flash-alert-directive',
   'ngDialog',
-  'angularFileUpload',
   'weddingAppServices',    
   'weddingAppControllers',
   'appRoutes'  
